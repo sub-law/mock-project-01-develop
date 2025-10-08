@@ -26,3 +26,10 @@ cp .env.example .env
 php artisan key:generate
 
 PHPコンテナから出る　Ctrl+D
+
+確認画面
+ログイン画面表示:http://localhost/login
+
+会員登録画面表示:http://localhost/register
+
+メール認証誘導画面:http://localhost/verify-email
