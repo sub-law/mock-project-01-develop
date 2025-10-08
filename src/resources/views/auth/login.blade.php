@@ -20,4 +20,4 @@
 
     <a href="{{ route('register') }}" class="form-link">会員登録はこちら</a>
 </div>
-@endsection
+
