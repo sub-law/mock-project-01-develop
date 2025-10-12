@@ -1,6 +1,10 @@
-@extends('layouts.login')
+@extends('layouts.login_layout')
 
 @section('title', 'ログイン')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endsection
 
 @section('content')
 <div class="form-wrapper">
@@ -21,3 +25,4 @@
     <a href="{{ route('register') }}" class="form-link">会員登録はこちら</a>
 </div>
 
+@endsection

@@ -29,7 +29,14 @@ PHPコンテナから出る　Ctrl+D
 
 確認画面
 ログイン画面表示:http://localhost/login
-
 会員登録画面表示:http://localhost/register
-
 メール認証誘導画面:http://localhost/verify-email
+プロフィール設定画面: http://localhost/profile_setup
+index画面：http://localhost
+商品出品画面:http://localhost/sell
+
+仕様環境
+PHP: 8.4.8 (CLI)
+Laravel Framework: 8.83.8 
+MySQL: 8.0.26
+nginx: 1.21.1

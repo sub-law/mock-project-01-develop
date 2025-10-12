@@ -5,7 +5,8 @@
     <meta charset="UTF-8">
     <title>@yield('title', 'COACHTECH')</title>
     <link rel="stylesheet" href="{{ asset('css/reset.css') }}" />
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
+    <link rel="stylesheet" href="{{ asset('css/layout_login.css') }}" />
+    @yield('styles')
 </head>
 
 <body>

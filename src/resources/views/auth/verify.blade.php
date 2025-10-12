@@ -1,6 +1,10 @@
-@extends('layouts.login')
+@extends('layouts.login_layout')
 
 @section('title', 'メール認証のお願い')
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endsection
 
 @section('content')
 <div class="form-wrapper">

@@ -17,17 +17,90 @@ use Illuminate\Support\Facades\Route;
 //  return view('auth.login');
 //});
 
-// ログイン画面表示
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+// 商品一覧画面(トップページ)（仮）
+Route::get('/', function () {
+    return view('products.index');
+})->name('index');
+
+// 商品一覧画面(トップページ・マイリスト)（仮）
+Route::get('/?tab=mylist', function () {
+    return view('mylist');
+})->name('mylist');
 
 // 会員登録画面表示
 Route::get('/register', function () {
     return view('auth.register');
 })->name('register');
 
+// プロフィール設定画面表示
+Route::get('/profile_setup', function () {
+    return view('auth.profile_setup');
+})->name('profile_setup');
+
+Route::post('/profile_update', function () {
+    // 仮の処理
+    return redirect()->route('profile_setup');
+})->name('profile.update');
+
+// ログイン画面表示
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
 // メール認証誘導画面
 Route::get('/verify-email', function () {
     return view('auth.verify');
 })->name('verification.notice');
+
+// ログアウト（仮処理）
+Route::get('/logout', function () {
+    // 実際は Auth::logout() などを使う
+    return redirect('/')->with('message', 'ログアウトしました');
+})->name('logout');
+
+// 商品詳細画面（仮）
+Route::get('/item/{item_id}', function () {
+    return view('item');
+})->name('item');
+
+// 商品購入画面（仮）
+Route::get('/purchase/{item_id}', function () {
+    $query = request('/purchase');
+    return view('purchase');
+});
+
+// 送付先住所変更画面（仮）
+Route::get('/purchase/address/{item_id}', function () {
+    return view('address');
+})->name('address');
+
+// 商品出品画面（仮）
+Route::get('/sell', function () {
+    return view('products.sell_form');
+})->name('sell');
+
+// 検索結果（仮）
+Route::get('/search', function () {
+    $query = request('query');
+    return view('search', ['query' => $query]);
+});
+
+// プロフィール画面（仮）
+Route::get('/mypage', function () {
+    return view('mypage');
+})->name('mypage');
+
+// プロフィール編集画面（仮）
+Route::get('/mypage/profile', function () {
+    return view('profile');
+})->name('profile');
+
+// プロフィール画面購入した商品一覧（仮）
+Route::get('/mypage?page=buy', function () {
+    return view('profile');
+})->name('profile');
+
+// プロフィール画面出品した商品一覧（仮）
+Route::get('/mypage?page=sell', function () {
+    return view('profile');
+})->name('profile');
