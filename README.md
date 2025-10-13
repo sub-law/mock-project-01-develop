@@ -37,6 +37,7 @@ index画面：http://localhost
 マイページ画面: http://localhost/mypage
 プロフィール編集画面: http://localhost/mypage/profile_edit
 商品詳細画面: http://localhost/item/{item_id}
+商品購入画面: http://localhost/purchase/{item_id}
 
 仕様環境
 PHP: 8.4.8 (CLI)

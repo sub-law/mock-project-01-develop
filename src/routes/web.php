@@ -65,9 +65,8 @@ Route::get('/item/{item_id}', function () {
 
 // 商品購入画面（仮）
 Route::get('/purchase/{item_id}', function () {
-    $query = request('/purchase');
-    return view('purchase');
-});
+    return view('products.purchase');
+})->name('purchase');
 
 // 送付先住所変更画面（仮）
 Route::get('/purchase/address/{item_id}', function () {

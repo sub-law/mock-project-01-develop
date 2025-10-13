@@ -11,18 +11,88 @@
     <div class="product-detail-grid">
         <!-- 左グリッド：商品画像 -->
         <div class="product-image-area">
-            <img src="{{ asset('storage/products/sample.jpg') }}" alt="商品画像" class="product-image">
+            <img src="{{ asset('storage/products/hdd.jpg') }}" alt="商品画像" class="product-image">
         </div>
 
         <!-- 右グリッド：商品情報 -->
-        <div class="product-info-area">
-            <h1 class="product-title">商品名がここに入る</h1>
-            <p class="product-price">¥47,000 <span class="tax-included">（税込）</span></p>
-            <button class="purchase-button">購入手続きへ</button>
+        <div class="product-summary">
+            {{-- <h1 class="product-title">{{ $product->name }}</h1> --}}
+            <h1 class="product-title">商品名（仮）</h1>
 
-            <div class="product-description">
-                <h2>商品説明</h2>
-                <p>カラー：グレー</p>
-                <p>商品の特徴や説明が入ります。特にありません。</p>
+            {{-- <p class="product-brand">{{ $product->brand }}</p> --}}
+            <p class="product-brand">ブランド名（仮）</p>
+
+            {{-- <p class="product-price">¥{{ number_format($product->price) }} <span class="tax-included">（税込）</span></p> --}}
+            <p class="product-price">¥45,000 <span class="tax-included">（税込）</span></p>
+
+            <div class="product-actions">
+                <div class="action-block">
+                    {{-- <button class="like-button">★</button> --}}
+                    {{-- <span class="like-count">{{ $product->likes_count }}</span> --}}
+                    <button class="like-button"><img src="{{ asset('images/star.png') }}" alt="☆"></button>
+                    <span class="action-count">0</span>
+                </div>
+
+                <div class="action-block">
+                    {{-- <span class="comment-icon">💬</span> --}}
+                    {{-- <span class="comment-count">{{ $product->comments_count }}</span> --}}
+                    <span class="comment-icon"><img src="{{ asset('images/comment.png') }}" alt="💬"></span>
+                    <span class="action-count">0</span>
+                </div>
             </div>
-            @endsection
+
+            <div class="product-button-area">
+                <button class="purchase-button">購入手続きへ</button>
+            </div>
+
+            <div class="product-description-area">
+                <h2 class="product-description-title">商品説明</h2>
+                <p class="product-description-text">
+                    この商品は高品質な素材で作られており、日常使いに最適です。デザインはシンプルながら洗練されており、さまざまなシーンで活躍します。
+                </p>
+            </div>
+
+            <div class="product-info-area">
+                <h2 class="product-info-title">商品の情報</h2>
+
+                <div class="product-info-tags">
+                    <div class="product-category-group">
+                        <span class="info-label">カテゴリー</span>
+                        <div class="category-tags">
+                            {{-- 仮データ --}}
+                            <span class="category-tag">洋服</span>
+                            <span class="category-tag">メンズ</span>
+                        </div>
+                    </div>
+
+                    <div class="product-condition-group">
+                        <span class="info-label">商品の状態</span>
+                        <span class="condition-text">良好</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-comment-area">
+                <div class="comment-header">コメント（1）</div>
+
+                <div class="comment-block">
+                    <div class="comment-header-row">
+                        <div class="comment-user-icon"></div>
+                        <div class="comment-username">admin</div>
+                    </div>
+                    <div class="comment-text">こちらにコメントが入ります。</div>
+                </div>
+
+
+                <div class="comment-form-area">
+                    <div class="comment-form-title">商品へのコメント</div>
+                    <textarea class="comment-input" placeholder="コメントを入力してください..."></textarea>
+                    <button class="comment-submit-button">コメントを送信する</button>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+@endsection
