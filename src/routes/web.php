@@ -60,8 +60,8 @@ Route::get('/logout', function () {
 
 // 商品詳細画面（仮）
 Route::get('/item/{item_id}', function () {
-    return view('item');
-})->name('item');
+    return view('products.product_show');
+})->name('product_show');
 
 // 商品購入画面（仮）
 Route::get('/purchase/{item_id}', function () {
@@ -87,20 +87,20 @@ Route::get('/search', function () {
 
 // プロフィール画面（仮）
 Route::get('/mypage', function () {
-    return view('mypage');
+    return view('mypage.mypage');
 })->name('mypage');
 
 // プロフィール編集画面（仮）
-Route::get('/mypage/profile', function () {
-    return view('profile');
-})->name('profile');
+Route::get('/mypage/profile_edit', function () {
+    return view('mypage.profile_edit');
+})->name('mypage.profile_edit');
 
 // プロフィール画面購入した商品一覧（仮）
 Route::get('/mypage?page=buy', function () {
-    return view('profile');
-})->name('profile');
+    return view('mypage.mypage');
+})->name('mypage.buy');
 
 // プロフィール画面出品した商品一覧（仮）
 Route::get('/mypage?page=sell', function () {
-    return view('profile');
-})->name('profile');
+    return view('mypage.mypage');
+})->name('mypage.sell');

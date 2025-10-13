@@ -15,7 +15,7 @@
 
     <div class="product-row">
         @for ($i = 1; $i <= 3; $i++)
-            <a href="{{ route('item', ['item_id' => $i]) }}" class="product-card">
+            <a href="{{ route('product_show', ['item_id' => $i]) }}" class="product-card">
             <img src="{{ asset('storage/products/bag.jpg') }}" alt="商品画像" class="product-image">
             <p class="product-name">商品名 {{ $i }}</p>
             </a>

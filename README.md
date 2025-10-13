@@ -34,6 +34,9 @@ PHPコンテナから出る　Ctrl+D
 プロフィール設定画面: http://localhost/profile_setup
 index画面：http://localhost
 商品出品画面:http://localhost/sell
+マイページ画面: http://localhost/mypage
+プロフィール編集画面: http://localhost/mypage/profile_edit
+商品詳細画面: http://localhost/item/{item_id}
 
 仕様環境
 PHP: 8.4.8 (CLI)

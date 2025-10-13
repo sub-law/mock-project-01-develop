@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'プロフィール設定画面')
+@section('title', 'プロフィール編集画面')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/login.css') }}">
@@ -12,7 +12,7 @@
     <h1 class="form-title">プロフィール設定</h1>
 
     <!-- プロフィール画像のプレースホルダー -->
-    {{-- <form method="POST" action="{{ route('mypage.profile_edit') }}"> --}}
+    {{-- <form method="POST" action="{{ route('profile.update') }}"> --}}
     <form method="POST" action="#" enctype="multipart/form-data">
         @csrf
 
