@@ -70,8 +70,8 @@ Route::get('/purchase/{item_id}', function () {
 
 // 送付先住所変更画面（仮）
 Route::get('/purchase/address/{item_id}', function () {
-    return view('address');
-})->name('address');
+    return view('mypage.address_edit');
+})->name('address_edit');
 
 // 商品出品画面（仮）
 Route::get('/sell', function () {

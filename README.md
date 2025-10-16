@@ -38,6 +38,8 @@ index画面：http://localhost
 プロフィール編集画面: http://localhost/mypage/profile_edit
 商品詳細画面: http://localhost/item/{item_id}
 商品購入画面: http://localhost/purchase/{item_id}
+送付先住所変更画面: http://localhost/purchase/address/{item_id}
+
 
 仕様環境
 PHP: 8.4.8 (CLI)

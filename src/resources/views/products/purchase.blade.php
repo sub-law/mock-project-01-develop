@@ -21,7 +21,6 @@
             </div>
         </section>
 
-
         <section class="payment-method">
             <h2 class="payment-title">支払い方法</h2>
             <select name="payment" class="payment-select">
@@ -58,17 +57,26 @@
                 <span class="summary-value"><span class="yen">¥</span>{{ $item->price ?? '47,000' }}</span>
             </div>
 
-            <div class="summary-divider"></div> <!-- ← 罫線ここ！ -->
-
+            <div class="summary-divider"></div>
             <div class="summary-row">
                 <span class="summary-label">支払い方法</span>
-                <span class="summary-value">{{ $paymentMethod ?? 'コンビニ払い' }}</span>
+                <span class="summary-value payment-summary">コンビニ払い</span>
             </div>
+
         </div>
-
-
         <button class="purchase-button">購入する</button>
     </section>
-
 </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const paymentSelect = document.querySelector('.payment-select');
+        const paymentSummary = document.querySelector('.payment-summary');
+
+        paymentSelect.addEventListener('change', function() {
+            const selected = paymentSelect.options[paymentSelect.selectedIndex].text;
+            paymentSummary.textContent = selected || '未選択';
+        });
+    });
+</script>
