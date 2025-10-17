@@ -46,3 +46,12 @@ PHP: 8.4.8 (CLI)
 Laravel Framework: 8.83.8 
 MySQL: 8.0.26
 nginx: 1.21.1
+
+テーブル相関
+usersとproducts:一対多
+purchasesとproducts:1対1
+usersとpurchases:1対多
+usersとcomments:一対多
+usersとfavorites:一対多
+commentsとproducts:多対1
+commentsとfavorites:多対1
