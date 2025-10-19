@@ -17,6 +17,7 @@ class CreatePurchasesTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('product_id');
+            $table->string('payment_method'); // 例: 'credit', 'convenience'
             $table->timestamps(); // created_at & updated_at
 
             // 外部キー制約

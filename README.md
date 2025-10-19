@@ -25,7 +25,39 @@ cp .env.example .env
 アプリキー生成 
 php artisan key:generate
 
+シンボリックリンク作成
+php artisan storage:link
+
+マイグレーション
+php artisan migrate
+
+ダミーデータ作成
+php artisan db:seed
+
+テストコマンド
+php artisan test --env=testing
+
 PHPコンテナから出る　Ctrl+D
+
+ダミーデータユーザー情報
+name:User A
+email:usera@example.com
+password:password
+出品数5
+購入数0
+
+name:User B
+email:userb@example.com
+password:password
+出品数5
+購入数1
+
+name:User C
+email:userc@example.com
+password:password
+出品数0
+購入数0
+
 
 確認画面
 ログイン画面表示:http://localhost/login

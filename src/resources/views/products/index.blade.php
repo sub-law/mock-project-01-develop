@@ -14,12 +14,13 @@
     </div>
 
     <div class="product-row">
-        @for ($i = 1; $i <= 3; $i++)
-            <a href="{{ route('product_show', ['item_id' => $i]) }}" class="product-card">
-            <img src="{{ asset('storage/products/bag.jpg') }}" alt="商品画像" class="product-image">
-            <p class="product-name">商品名 {{ $i }}</p>
-            </a>
-            @endfor
+        @foreach ($products as $product)
+        <a href="{{ route('product_show', ['item_id' => $product->id]) }}" class="product-card">
+            <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
+            <p class="product-name">{{ $product->name }}</p>
+        </a>
+        @endforeach
     </div>
+
 </div>
 @endsection

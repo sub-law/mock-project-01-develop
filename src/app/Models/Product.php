@@ -18,6 +18,7 @@ class Product extends Model
         'buyer_id',
         'name',
         'status',
+        'brand',
         'description',
         'image_path',
         'category',

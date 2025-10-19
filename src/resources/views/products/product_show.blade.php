@@ -11,19 +11,15 @@
     <div class="product-detail-grid">
         <!-- 左グリッド：商品画像 -->
         <div class="product-image-area">
-            <img src="{{ asset('storage/products/hdd.jpg') }}" alt="商品画像" class="product-image">
+            <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
         </div>
 
         <!-- 右グリッド：商品情報 -->
+        <!-- 右グリッド：商品情報 -->
         <div class="product-summary">
-            {{-- <h1 class="product-title">{{ $product->name }}</h1> --}}
-            <h1 class="product-title">商品名（仮）</h1>
-
-            {{-- <p class="product-brand">{{ $product->brand }}</p> --}}
-            <p class="product-brand">ブランド名（仮）</p>
-
-            {{-- <p class="product-price">¥{{ number_format($product->price) }} <span class="tax-included">（税込）</span></p> --}}
-            <p class="product-price">¥45,000 <span class="tax-included">（税込）</span></p>
+            <h1 class="product-title">{{ $product->name }}</h1>
+            <p class="product-brand">{{ $product->brand }}</p>
+            <p class="product-price">¥{{ number_format($product->price) }} <span class="tax-included">（税込）</span></p>
 
             <div class="product-actions">
                 <div class="action-block">
@@ -47,9 +43,7 @@
 
             <div class="product-description-area">
                 <h2 class="product-description-title">商品説明</h2>
-                <p class="product-description-text">
-                    この商品は高品質な素材で作られており、日常使いに最適です。デザインはシンプルながら洗練されており、さまざまなシーンで活躍します。
-                </p>
+                <p class="product-description-text">{{ $product->description }}</p>
             </div>
 
             <div class="product-info-area">
@@ -59,15 +53,13 @@
                     <div class="product-category-group">
                         <span class="info-label">カテゴリー</span>
                         <div class="category-tags">
-                            {{-- 仮データ --}}
-                            <span class="category-tag">洋服</span>
-                            <span class="category-tag">メンズ</span>
+                            <span class="category-tag">{{ $product->category }}</span>
                         </div>
                     </div>
 
                     <div class="product-condition-group">
                         <span class="info-label">商品の状態</span>
-                        <span class="condition-text">良好</span>
+                        <span class="condition-text">{{ $product->condition }}</span>
                     </div>
                 </div>
             </div>

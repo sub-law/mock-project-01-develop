@@ -26,8 +26,7 @@
             <select name="payment" class="payment-select">
                 <option value="">選択してください</option>
                 <option value="convenience">コンビニ払い</option>
-                <option value="credit">クレジットカード</option>
-                <option value="bank">銀行振込</option>
+                <option value="credit">カード支払い</option>
             </select>
         </section>
 

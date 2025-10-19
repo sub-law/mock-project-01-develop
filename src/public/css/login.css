@@ -112,6 +112,14 @@
     color: #ff5655;
 }
 
+.form-error {
+    color: #FF5555;
+    font-size: 14px;
+    text-align: left;
+    margin-top: -24px;
+    margin-bottom: 24px;
+}
+
 @media screen and (max-width: 768px) {
     .form-wrapper {
         margin: 60px auto 0;

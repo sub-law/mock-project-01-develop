@@ -24,13 +24,16 @@
             </div>
 
             <div class="header-right">
-                {{-- @auth --}}
-                <a href="{{ route('logout') }}" class="header-link">ログアウト</a>
+                @auth
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="header-link">ログアウト</button>
+                </form>
                 <a href="{{ route('mypage') }}" class="header-link">マイページ</a>
                 <a href="{{ route('sell') }}" class="header-button">出品</a>
-                {{-- @else --}}
+                @else
                 <a href="{{ route('login') }}" class="header-link">ログイン</a>
-                {{-- @endauth --}}
+                @endauth
             </div>
         </div>
     </header>

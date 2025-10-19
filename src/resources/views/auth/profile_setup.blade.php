@@ -12,8 +12,7 @@
     <h1 class="form-title">プロフィール設定</h1>
 
     <!-- プロフィール画像のプレースホルダー -->
-    {{-- <form method="POST" action="{{ route('mypage.profile_edit') }}"> --}}
-    <form method="POST" action="#" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="form-image-area">
@@ -21,20 +20,35 @@
                 <div class="form-image-placeholder" id="imagePreview"></div>
                 <label for="profile_image" class="form-image-button">画像を選択する</label>
                 <input type="file" id="profile_image" name="profile_image" class="form-image-input" accept="image/*" hidden>
+                @error('profile_image')
+                <div class="form-error">{{ $message }}</div>
+                @enderror
             </div>
         </div>
 
         <label for="username" class="form-label">ユーザー名</label>
-        <input type="text" id="username" name="username" class="form-input" required>
+        <input type="text" id="name" name="name" class="form-input" value="{{ old('name', Auth::user()->name) }}">
+        @error('name')
+        <div class="form-error">{{ $message }}</div>
+        @enderror
 
         <label for="postal_code" class="form-label">郵便番号</label>
-        <input type="text" id="postal_code" name="postal_code" class="form-input" required>
+        <input type="text" id="postal_code" name="postal_code" class="form-input">
+        @error('postal_code')
+        <div class="form-error">{{ $message }}</div>
+        @enderror
 
         <label for="address" class="form-label">住所</label>
-        <input type="text" id="address" name="address" class="form-input" required>
+        <input type="text" id="address" name="address" class="form-input">
+        @error('address')
+        <div class="form-error">{{ $message }}</div>
+        @enderror
 
         <label for="building" class="form-label">建物名</label>
         <input type="text" id="building" name="building" class="form-input">
+        @error('building')
+        <div class="form-error">{{ $message }}</div>
+        @enderror
 
         <button type="submit" class="form-button">更新する</button>
     </form>

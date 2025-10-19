@@ -1,7 +1,12 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Models\Product;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Auth\ProfileController;
+use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,34 +23,49 @@ use Illuminate\Support\Facades\Route;
 //});
 
 // 商品一覧画面(トップページ)（仮）
-Route::get('/', function () {
-    return view('products.index');
-})->name('index');
+//Route::get('/', function () {
+//    return view('products.index');
+//})->name('index');
+
+//Route::get('/', function () {
+//    $products = Product::all(); // 全商品を取得
+//    return view('products.index', compact('products'));
+//})->name('index');
+
+Route::get('/', [ProductController::class, 'index'])->name('index');
+
+Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product_show');
+
+
+// 商品詳細画面（仮）
+//Route::get('/item/{item_id}', function () {
+//    return view('products.product_show');
+//})->name('product_show');
 
 // 商品一覧画面(トップページ・マイリスト)（仮）
 Route::get('/?tab=mylist', function () {
     return view('mylist');
 })->name('mylist');
 
-// 会員登録画面表示
-Route::get('/register', function () {
-    return view('auth.register');
-})->name('register');
+// 会員登録画面表示完成
+Route::get('/register', [RegisterController::class, 'show'])->name('register');
+Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
+
+// ログイン画面完成
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
 
 // プロフィール設定画面表示
-Route::get('/profile_setup', function () {
-    return view('auth.profile_setup');
-})->name('profile_setup');
+Route::get('/profile_setup', [ProfileController::class, 'setup'])->name('profile.setup');
+Route::post('/profile_setup', [ProfileController::class, 'update'])->name('profile.update');
 
-Route::post('/profile_update', function () {
+
+//Route::post('/profile_update', function () {
     // 仮の処理
-    return redirect()->route('profile_setup');
-})->name('profile.update');
-
-// ログイン画面表示
-Route::get('/login', function () {
-    return view('auth.login');
-})->name('login');
+//    return redirect()->route('profile_setup');
+//})->name('profile.update');
 
 // メール認証誘導画面
 Route::get('/verify-email', function () {
@@ -53,15 +73,13 @@ Route::get('/verify-email', function () {
 })->name('verification.notice');
 
 // ログアウト（仮処理）
-Route::get('/logout', function () {
+//Route::get('/logout', function () {
     // 実際は Auth::logout() などを使う
-    return redirect('/')->with('message', 'ログアウトしました');
-})->name('logout');
+//    return redirect('/')->with('message', 'ログアウトしました');
+//})->name('logout');
 
-// 商品詳細画面（仮）
-Route::get('/item/{item_id}', function () {
-    return view('products.product_show');
-})->name('product_show');
+
+
 
 // 商品購入画面（仮）
 Route::get('/purchase/{item_id}', function () {

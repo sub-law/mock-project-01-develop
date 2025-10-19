@@ -14,6 +14,7 @@ class Purchase extends Model
     protected $fillable = [
         'user_id',
         'product_id',
+        'payment_method',
     ];
 
     // 購入者（1対多の「多」側）
