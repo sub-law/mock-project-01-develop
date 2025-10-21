@@ -46,9 +46,6 @@
 
         <label for="building" class="form-label">建物名</label>
         <input type="text" id="building" name="building" class="form-input">
-        @error('building')
-        <div class="form-error">{{ $message }}</div>
-        @enderror
 
         <button type="submit" class="form-button">更新する</button>
     </form>
@@ -70,6 +67,5 @@
         }
     });
 </script>
-
 
 @endsection

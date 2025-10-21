@@ -36,6 +36,8 @@ php artisan db:seed
 
 テストコマンド
 php artisan test --env=testing
+php artisan test --filter=LoginTest
+
 
 PHPコンテナから出る　Ctrl+D
 
@@ -69,7 +71,7 @@ password:password
 index画面：http://localhost
 商品出品画面:http://localhost/sell
 マイページ画面: http://localhost/mypage
-プロフィール編集画面: http://localhost/mypage/profile_edit
+プロフィール編集画面: http://localhost/mypage/profile
 商品詳細画面: http://localhost/item/{item_id}
 商品購入画面: http://localhost/purchase/{item_id}
 送付先住所変更画面: http://localhost/purchase/address/{item_id}

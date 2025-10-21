@@ -24,11 +24,6 @@ Route::get('/', [ProductController::class, 'index'])->name('index');
 //商品詳細画面
 Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product_show');
 
-// 商品一覧画面(トップページ・マイリスト)（仮）
-Route::get('/?tab=mylist', function () {
-    return view('mylist');
-})->name('mylist');
-
 // 会員登録画面表示
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
@@ -70,9 +65,8 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
 
-    Route::get('/mypage/profile', function () {
-        return view('mypage.profile_edit');
-    })->name('mypage.profile.edit');
+    Route::get('/mypage/profile', [ProfileController::class, 'profile']);
+    Route::put('/mypage/profile', [ProfileController::class, 'edit'])->name('mypage.profile.edit');
 });
 
 // プロフィール編集画面（仮）
@@ -88,7 +82,7 @@ Route::middleware(['auth'])->group(function () {
 
 // プロフィール画面出品した商品一覧（仮）
 //Route::get('/mypage?page=sell', function () {
-return view('mypage.mypage');
+//return view('mypage.mypage');
 //})->name('mypage.sell');
 
 //Route::get('/', function () {
@@ -130,3 +124,8 @@ return view('mypage.mypage');
 //Route::get('/mypage', function () {
 //    return view('mypage.mypage');
 //})->name('mypage');
+
+// 商品一覧画面(トップページ・マイリスト)（仮）
+//Route::get('/?tab=mylist', function () {
+//    return view('mylist');
+//})->name('mylist');

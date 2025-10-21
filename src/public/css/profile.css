@@ -56,12 +56,11 @@
     }
 }
 
-
 .form-image-placeholder {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    border: 2px dashed #ccc;
+    border: none;
     display: flex;
     align-items: center;
     justify-content: center;
