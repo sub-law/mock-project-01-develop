@@ -24,21 +24,46 @@
             </div>
 
             <div class="header-right">
-                @auth
-                <form method="POST" action="{{ route('logout') }}">
+                @guest
+                <a href="{{ route('login') }}" class="header-link">ログイン</a>
+                <a href="{{ route('mypage') }}" class="header-link">マイページ</a>
+                <a href="{{ route('sell') }}" class="header-button">出品</a>
+                @else
+                <form method="POST" action="{{ route('logout') }}" class="header-form">
                     @csrf
                     <button type="submit" class="header-link">ログアウト</button>
                 </form>
                 <a href="{{ route('mypage') }}" class="header-link">マイページ</a>
                 <a href="{{ route('sell') }}" class="header-button">出品</a>
-                @else
-                <a href="{{ route('login') }}" class="header-link">ログイン</a>
-                @endauth
+                @endguest
             </div>
+
         </div>
     </header>
 
+    @if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+    @endif
+
+    @if (session('message'))
+    <div class="alert alert-success">
+        {{ session('message') }}
+    </div>
+    @endif
+
     @yield('content')
+
+    <script>
+        setTimeout(() => {
+            const alert = document.querySelector('.alert-success');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s';
+                alert.style.opacity = '0';
+            }
+        }, 3000);
+    </script>
 </body>
 
 </html>

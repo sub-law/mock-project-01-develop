@@ -51,12 +51,14 @@ email:userb@example.com
 password:password
 出品数5
 購入数1
+お気に入り2
 
 name:User C
 email:userc@example.com
 password:password
 出品数0
 購入数0
+お気に入り2
 
 
 確認画面

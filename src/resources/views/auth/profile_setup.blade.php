@@ -53,4 +53,23 @@
         <button type="submit" class="form-button">更新する</button>
     </form>
 </div>
+
+<script>
+    document.getElementById('profile_image').addEventListener('change', function(event) {
+        const preview = document.getElementById('imagePreview');
+        const file = event.target.files[0];
+
+        if (file && file.type.startsWith('image/')) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.innerHTML = `<img src="${e.target.result}" alt="プレビュー画像" style="width: 150px; height: 150px; object-fit: cover; border-radius: 50%; border: 2px solid #FF5555;">`;
+            };
+            reader.readAsDataURL(file);
+        } else {
+            preview.innerHTML = ''; // 非画像なら空に
+        }
+    });
+</script>
+
+
 @endsection

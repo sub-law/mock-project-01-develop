@@ -31,6 +31,8 @@ class ProfileController extends Controller
             $path = $request->file('profile_image')->store('public/profile_images');
             $user->profile_image = basename($path);
         }
+        // else句は不要：前の画像をそのまま使う
+
 
         // ユーザー情報更新
         $user->name = $validated['name'];
@@ -38,6 +40,6 @@ class ProfileController extends Controller
         $user->address = $validated['address'];
         $user->save();
 
-        return redirect()->route('mypage')->with('status', 'プロフィールを更新しました！');
+        return redirect()->route('index')->with('status', 'プロフィールを更新しました！');
     }
 }

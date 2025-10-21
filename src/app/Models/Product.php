@@ -55,4 +55,11 @@ class Product extends Model
     {
         return $this->hasMany(Favorite::class);
     }
+
+    // Product.php に追加
+
+    public function getIsSoldAttribute()
+    {
+        return !is_null($this->buyer_id);
+    }
 }

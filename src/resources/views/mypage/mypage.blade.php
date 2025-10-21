@@ -11,10 +11,10 @@
 <div class="mypage-wrapper">
     <div class="profile-box">
         <div class="profile-content">
-            <img src="{{ asset('storage/products/bag.jpg') }}" alt="プロフィール画像" class="profile-icon">
-            <p class="profile-name">ユーザー名</p>
+            <img src="{{ asset('storage/profile_images/' . $user->profile_image) }}" alt="プロフィール画像" class="profile-icon">
+            <p class="profile-name">{{ $user->name }}</p>
         </div>
-        <a href="{{ route('mypage.profile_edit') }}" class="edit-button">プロフィールを編集</a>
+        <a href="{{ route('mypage.profile.edit') }}" class="edit-button">プロフィールを編集</a>
     </div>
 </div>
 
@@ -24,28 +24,46 @@
 </div>
 
 <div class="product-contents">
-    <div class="product-list selling-list active">
-        {{-- 出品した商品 --}}
-    </div>
-
-    <div class="product-list purchased-list">
-        {{-- 購入した商品 --}}
-    </div>
-</div>
-
-
-<div class="product-list-wrapper">
-    <div class="product-list">
-        @foreach(range(1, 9) as $i)
-        <div class="product-card">
-            <div class="product-image-box">
-                <img src="{{ asset('storage/products/bag.jpg') }}" alt="商品画像">
-                <div class="product-name">商品名 {{ $i }}</div>
+    <div class="product-row selling-list active">
+        @foreach ($sellingProducts as $product)
+        <a href="{{ route('product_show', ['item_id' => $product->id]) }}" class="product-card">
+            <div class="image-wrapper">
+                <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
+                @if ($product->is_sold)
+                <div class="sold-label">SOLD</div>
+                @endif
             </div>
-        </div>
+            <p class="product-name">{{ $product->name }}</p>
+        </a>
+        @endforeach
+    </div>
+
+    <div class="product-row purchased-list">
+        @foreach ($purchasedProducts as $product)
+        <a href="{{ route('product_show', ['item_id' => $product->id]) }}" class="product-card">
+            <div class="image-wrapper">
+                <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
+                @if ($product->is_sold)
+                <div class="sold-label">SOLD</div>
+                @endif
+            </div>
+            <p class="product-name">{{ $product->name }}</p>
+        </a>
         @endforeach
     </div>
 </div>
 
+<script>
+    document.querySelectorAll('.section-title').forEach(tab => {
+        tab.addEventListener('click', () => {
+            document.querySelectorAll('.section-title').forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            const selected = tab.dataset.tab;
+            document.querySelectorAll('.product-row').forEach(list => list.classList.remove('active'));
+            document.querySelector(`.${selected}-list`).classList.add('active');
+        });
+    });
+</script>
 
 @endsection

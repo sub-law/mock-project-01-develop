@@ -14,7 +14,9 @@ class ProductController extends Controller
         if ($tab === 'mylist' && auth()->check()) {
             $products = auth()->user()->favorites->pluck('product');
         } else {
-            $products = Product::all();
+            $products = Product::when(auth()->check(), function ($query) {
+                $query->where('seller_id', '!=', auth()->id());
+            })->get();
         }
 
         return view('products.index', compact('products'));
@@ -23,6 +25,7 @@ class ProductController extends Controller
     public function show($item_id)
     {
         $product = Product::with(['favorites', 'comments', 'seller'])->findOrFail($item_id);
+        
         return view('products.product_show', compact('product'));
     }
 }
