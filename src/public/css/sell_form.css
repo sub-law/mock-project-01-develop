@@ -94,6 +94,16 @@ textarea.form-input {
     box-sizing: border-box;
 }
 
+.form-image-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 /* 中央ボタン（位置指定あり） */
 .form-image-button-centered {
     position: absolute;
@@ -235,6 +245,16 @@ select.form-input {
     background-color: #fff;
     border: 1.5px solid #FF5555;
     color: #ff5655;
+}
+
+/* エラーメッセージ表示用 */
+.form-error {
+    color: #FF5555;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -24px;
+    margin-bottom: 16px;
+    text-align: left;
 }
 
 /* レスポンシブ対応 */

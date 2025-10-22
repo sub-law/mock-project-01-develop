@@ -27,14 +27,14 @@
                 @guest
                 <a href="{{ route('login') }}" class="header-link">ログイン</a>
                 <a href="{{ route('mypage') }}" class="header-link">マイページ</a>
-                <a href="{{ route('sell') }}" class="header-button">出品</a>
+                <a href="{{ route('sell.form') }}" class="header-button">出品</a>
                 @else
                 <form method="POST" action="{{ route('logout') }}" class="header-form">
                     @csrf
                     <button type="submit" class="header-link">ログアウト</button>
                 </form>
                 <a href="{{ route('mypage') }}" class="header-link">マイページ</a>
-                <a href="{{ route('sell') }}" class="header-button">出品</a>
+                <a href="{{ route('sell.form') }}" class="header-button">出品</a>
                 @endguest
             </div>
 

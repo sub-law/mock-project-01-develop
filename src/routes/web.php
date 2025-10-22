@@ -61,11 +61,12 @@ Route::get('/search', function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/sell', function () {
         return view('products.sell_form');
-    })->name('sell');
+    })->name('sell.form');
+    Route::post('/sell', [ProductController::class, 'store'])->name('sell.store');
 
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
 
-    Route::get('/mypage/profile', [ProfileController::class, 'profile']);
+    Route::get('/mypage/profile', [ProfileController::class, 'profile'])->name('mypage.profile');
     Route::put('/mypage/profile', [ProfileController::class, 'edit'])->name('mypage.profile.edit');
 });
 
