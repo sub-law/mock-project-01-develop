@@ -12,6 +12,9 @@
         <!-- 左グリッド：商品画像 -->
         <div class="product-image-area">
             <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
+            @if ($product->is_sold)
+            <div class="sold-label">SOLD</div>
+            @endif
         </div>
 
         <!-- 右グリッド：商品情報 -->
@@ -38,8 +41,23 @@
             </div>
 
             <div class="product-button-area">
-                <button class="purchase-button">購入手続きへ</button>
+                @auth
+                @if (Auth::id() !== $product->seller_id)
+                @if (!$product->is_sold)
+                <a href="{{ route('purchase', ['item_id' => $product->id]) }}" class="purchase-button">購入手続きへ</a>
+                @else
+                <button class="purchase-button disabled" disabled>ただいま品切れ</button>
+                @endif
+                @endif
+                @endauth
+
+                @guest
+                <a href="{{ route('login') }}" class="purchase-button">購入手続きへ</a>
+                @endguest
             </div>
+
+
+
 
             <div class="product-description-area">
                 <h2 class="product-description-title">商品説明</h2>

@@ -14,7 +14,9 @@
     <header class="header">
         <div class="header-inner">
             <div class="header-left">
-                <img src="{{ asset('images/logo.svg') }}" alt="COACHTECHロゴ">
+                <a href="{{ route('index') }}" class="header-logo">
+                    <img src="{{ asset('images/logo.svg') }}" alt="COACHTECHロゴ">
+                </a>
             </div>
 
             <div class="header-center">
