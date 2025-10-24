@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\ExhibitionRequest;
+use App\Http\Requests\CommentRequest;
+use App\Models\Comment;
 
 class ProductController extends Controller
 {
@@ -24,11 +26,27 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
+    public function storeComment(CommentRequest $request)
+    {
+        Comment::create([
+            'product_id' => $request->input('product_id'),
+            'user_id' => Auth::id(),
+            'content' => $request->input('content'), 
+        ]);
+
+        return redirect()->back()->with('message', 'コメントを投稿しました！');
+    }
+
     public function show($item_id)
     {
         $product = Product::with(['favorites', 'comments', 'seller'])->findOrFail($item_id);
-        
-        return view('products.product_show', compact('product'));
+
+        $isFavorited = false;
+        if (Auth::check()) {
+            $isFavorited = $product->favorites->contains('user_id', Auth::id());
+        }
+
+        return view('products.product_show', compact('product', 'isFavorited'));
     }
 
     public function store(ExhibitionRequest $request)
@@ -54,5 +72,18 @@ class ProductController extends Controller
         $product->save();
 
         return redirect()->route('mypage')->with('status', '商品を出品しました！');
+    }
+
+    public function showPurchaseForm($item_id)
+    {
+        $product = Product::findOrFail($item_id);
+        $user = Auth::user();
+
+        if ($product->is_sold) {
+            return redirect()->route('product_show', ['item_id' => $item_id])
+                ->with('message', 'この商品はすでに購入されています');
+        }
+
+        return view('products.purchase', compact('product', 'user'));
     }
 }

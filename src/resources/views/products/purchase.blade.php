@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', '商品購入手画面')
+@section('title', '商品購入手続き')
 
 @section('styles')
 <link rel="stylesheet" href="{{ asset('css/purchase.css') }}">
@@ -12,11 +12,11 @@
     <div class="checkout-left">
         <section class="product-summary">
             <div class="product-info-box">
-                <img src="{{ asset('storage/products/watch.jpg') }}" alt="商品画像" class="product-image">
+                <img src="{{ asset('storage/products/' . ($product->image_path ?? 'default.jpg')) }}" alt="商品画像" class="product-image">
 
                 <div class="product-text">
-                    <p class="product-name">商品名（仮）</p>
-                    <p class="product-price"><span class="yen">¥</span>47,000</p>
+                    <p class="product-name">{{ $product->name ?? '商品名未設定' }}</p>
+                    <p class="product-price"><span class="yen">¥</span>{{ number_format($product->price ?? 0) }}</p>
                 </div>
             </div>
         </section>
@@ -33,37 +33,42 @@
         <section class="delivery-info">
             <div class="delivery-header">
                 <h2 class="delivery-title">配送先</h2>
-                {{-- <a href="{{ route('address') }}" class="change-link">変更する</a> --}}
-                {{-- 実装前なので仮リンクにしておく --}}
-                <a href="#" class="change-link">変更する</a>
-
+                <a href="{{ route('address_edit', ['item_id' => $product->id]) }}" class="change-link">変更する</a>
             </div>
 
-            {{-- <p class="delivery-address">
-                {{ $user->postal_code }}<br>
-            {{ $user->address }}
-            </p> --}}
-
+            @if(isset($user))
+            <p class="delivery-address">
+                〒{{ $user->postal_code ?? '未登録' }}<br>
+                {{ $user->address ?? '住所未登録' }}
+            </p>
+            @else
             <p>〒XXX-YYYY</p>
             <p>ここに住所などが入ります</p>
+            @endif
         </section>
     </div>
 
+    <!-- 右側：注文概要と購入ボタン -->
     <section class="order-summary">
         <div class="summary-box">
             <div class="summary-row">
                 <span class="summary-label">商品代金</span>
-                <span class="summary-value"><span class="yen">¥</span>{{ $item->price ?? '47,000' }}</span>
+                <span class="summary-value"><span class="yen">¥</span>{{ number_format($product->price ?? 0) }}</span>
             </div>
 
             <div class="summary-divider"></div>
             <div class="summary-row">
                 <span class="summary-label">支払い方法</span>
-                <span class="summary-value payment-summary">コンビニ払い</span>
+                <span class="summary-value payment-summary">未選択</span>
             </div>
-
         </div>
-        <button class="purchase-button">購入する</button>
+
+        {{-- <form action="{{ route('purchase.confirm') }}" method="POST">--}}
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+        <input type="hidden" name="payment_method" id="payment-method-hidden" value="">
+        <button type="submit" class="purchase-button">購入する</button>
+        </form>
     </section>
 </div>
 @endsection
@@ -72,10 +77,14 @@
     document.addEventListener('DOMContentLoaded', function() {
         const paymentSelect = document.querySelector('.payment-select');
         const paymentSummary = document.querySelector('.payment-summary');
+        const paymentHidden = document.getElementById('payment-method-hidden');
 
         paymentSelect.addEventListener('change', function() {
-            const selected = paymentSelect.options[paymentSelect.selectedIndex].text;
-            paymentSummary.textContent = selected || '未選択';
+            const selectedText = paymentSelect.options[paymentSelect.selectedIndex].text;
+            const selectedValue = paymentSelect.value;
+
+            paymentSummary.textContent = selectedText || '未選択';
+            paymentHidden.value = selectedValue;
         });
     });
 </script>

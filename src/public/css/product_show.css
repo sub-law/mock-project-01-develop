@@ -87,6 +87,8 @@
     gap: 100px;
     margin-left: 50px;
     margin-top: 20px;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .action-block {
@@ -256,8 +258,18 @@
 .comment-user-icon {
     width: 70px;
     height: 70px;
-    background-color: #D9D9D9;
     border-radius: 50%;
+    overflow: hidden;
+    background-color: #D9D9D9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.comment-user-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .comment-username {
@@ -307,22 +319,35 @@
 }
 
 .comment-submit-button {
+    display: inline-block;
     width: 570px;
     height: 56px;
     background-color: #FF5555;
     color: #fff;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: bold;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    text-align: center;
+    line-height: 56px;
+    text-decoration: none;
 }
 
 .purchase-button:hover,
- .comment-submit-button:hover {
+.comment-submit-button:hover {
     background-color: #fff;
     border: 1.5px solid #FF5555;
     color: #ff5655;
+}
+
+.form-error {
+    color: #FF5555;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -14px;
+    margin-bottom: 16px;
+    text-align: left;
 }
 
 @media (max-width: 1440px) {
