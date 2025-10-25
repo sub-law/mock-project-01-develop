@@ -25,10 +25,6 @@ Route::get('/', [ProductController::class, 'index'])->name('index');
 
 Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product_show');
 
-Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->middleware('auth');
-
-Route::post('/comments', [ProductController::class, 'storecomment'])->name('comments.store');
-
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
@@ -60,6 +56,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/purchase/{item_id}', [ProductController::class, 'showPurchaseForm'])->name('purchase');
     Route::POST('/purchase/{item_id}', [ProductController::class, 'purchaseconfirm'])->name('purchase.confirm');
+
+    Route::post('/comments', [ProductController::class, 'storecomment'])->name('comments.store');
+
+    Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 
     Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->name('address_edit');
     Route::put('/purchase/address/{item_id}', [AddressController::class, 'update'])->name('address_update');
