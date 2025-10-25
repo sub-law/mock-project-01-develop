@@ -28,7 +28,6 @@ class CreateProductsTable extends Migration
 
             $table->timestamps();
 
-            // 外部キー制約
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('set null');
         });

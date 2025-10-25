@@ -9,7 +9,7 @@
 @section('content')
 <div class="product-detail-container">
     <div class="product-detail-grid">
-        <!-- 左グリッド：商品画像 -->
+        
         <div class="product-image-area">
             <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
             @if ($product->is_sold)
@@ -17,8 +17,6 @@
             @endif
         </div>
 
-        <!-- 右グリッド：商品情報 -->
-        <!-- 右グリッド：商品情報 -->
         <div class="product-summary">
             <h1 class="product-title">{{ $product->name }}</h1>
             <p class="product-brand">{{ $product->brand }}</p>

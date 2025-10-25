@@ -17,6 +17,7 @@ class AddressController extends Controller
 
     public function update(AddressRequest $request, $item_id)
     {
+        /** @var \App\Models\User $user */
         $user = Auth::user();
         $user->update($request->only(['postal_code', 'address', 'building_name']));
 

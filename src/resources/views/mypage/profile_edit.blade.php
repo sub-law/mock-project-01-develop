@@ -73,7 +73,7 @@
                 };
                 reader.readAsDataURL(file);
             } else {
-                preview.innerHTML = ''; // 非画像なら空に
+                preview.innerHTML = ''; 
             }
         });
     </script>

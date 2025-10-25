@@ -26,37 +26,30 @@ class Product extends Model
         'price',
     ];
 
-    // 出品者（1商品に1人）
     public function seller()
     {
         return $this->belongsTo(User::class, 'seller_id');
     }
 
-    // 購入者（1商品に1人）
     public function buyer()
     {
         return $this->belongsTo(User::class, 'buyer_id');
     }
 
-    // 購入情報（1対1）
     public function purchase()
     {
         return $this->hasOne(Purchase::class);
     }
 
-    // コメント（1商品に複数）
     public function comments()
     {
         return $this->hasMany(Comment::class);
     }
 
-    // お気に入り（1商品に複数）
     public function favorites()
     {
         return $this->hasMany(Favorite::class);
     }
-
-    // Product.php に追加
 
     public function getIsSoldAttribute()
     {

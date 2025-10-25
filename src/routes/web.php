@@ -27,7 +27,7 @@ Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product
 
 Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->middleware('auth');
 
-Route::post('/comments', [ProductController::class, 'storeComment'])->name('comments.store');
+Route::post('/comments', [ProductController::class, 'storecomment'])->name('comments.store');
 
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
@@ -44,11 +44,6 @@ Route::get('/verify-email', function () {
     return view('auth.verify');
 })->name('verification.notice');
 
-// 送付先住所変更画面（仮）
-Route::get('/purchase/address/{item_id}', function () {
-    return view('mypage.address_edit');
-})->name('address_edit');
-
 // 検索結果（仮）
 Route::get('/search', function () {
     $query = request('query');
@@ -57,22 +52,19 @@ Route::get('/search', function () {
 
 Route::middleware(['auth'])->group(function () {
 
-    // 出品関連
     Route::get('/sell', function () {
         return view('products.sell_form');
     })->name('sell.form');
 
     Route::post('/sell', [ProductController::class, 'store'])->name('sell.store');
 
-    // 購入画面表示
     Route::get('/purchase/{item_id}', [ProductController::class, 'showPurchaseForm'])->name('purchase');
+    Route::POST('/purchase/{item_id}', [ProductController::class, 'purchaseconfirm'])->name('purchase.confirm');
 
     Route::get('/purchase/address/{item_id}', [AddressController::class, 'edit'])->name('address_edit');
     Route::put('/purchase/address/{item_id}', [AddressController::class, 'update'])->name('address_update');
 
-    // マイページ関連
     Route::get('/mypage', [MypageController::class, 'index'])->name('mypage');
-
     Route::controller(ProfileController::class)->group(function () {
         Route::get('/mypage/profile', 'profile')->name('mypage.profile');
         Route::put('/mypage/profile', 'edit')->name('mypage.profile.edit');

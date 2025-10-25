@@ -31,7 +31,6 @@
 .product-row {
     display: flex;
     justify-content: flex-start;
-    /* 左寄せ */
     gap: 50px;
     flex-wrap: wrap;
     padding: 10px 50px;
@@ -76,7 +75,6 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%) rotate(-20deg);
-    /* 中央＆斜め */
     background-color: rgba(255, 0, 0, 0.85);
     color: white;
     padding: 10px 20px;
@@ -86,7 +84,6 @@
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     z-index: 1;
     pointer-events: none;
-    /* クリックを妨げないように */
 }
 
 .empty-message {

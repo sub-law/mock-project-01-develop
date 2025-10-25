@@ -37,6 +37,4 @@ class LoginRequest extends FormRequest
             'password.required' => 'パスワードを入力してください',
         ];
     }
-
-    //認証失敗時のメッセージはコントローラで実装させる
 }

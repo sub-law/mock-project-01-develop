@@ -9,7 +9,6 @@ class FavoritesTableSeeder extends Seeder
 {
     public function run()
     {
-        // ユーザーBが商品ID 2, 3 をお気に入り
         Favorite::create([
             'user_id' => 2,
             'product_id' => 2,
@@ -20,7 +19,6 @@ class FavoritesTableSeeder extends Seeder
             'product_id' => 3,
         ]);
 
-        // ユーザーCが商品ID 1 をお気に入り
         Favorite::create([
             'user_id' => 3,
             'product_id' => 1,

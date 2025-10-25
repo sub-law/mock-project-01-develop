@@ -17,14 +17,12 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        // ユーザー作成
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password),
         ]);
 
-        // ログイン処理
         Auth::login($user);
 
         return redirect()->route('profile.setup');

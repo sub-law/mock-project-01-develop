@@ -78,9 +78,9 @@
     height: 31px;
     font-family: Inter;
     font-size: 16px;
-    color: #5F5F5F;
-    background-color: #fff;
-    border: 1px solid #5F5F5F;
+    color: #fff;
+    background-color: #636769;
+    border: 1px solid #b1b1b1;
     border-radius: 4px;
     padding: 0px 8px;
     margin-left: 100px;
@@ -236,6 +236,13 @@
     margin-top: 40px;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.form-error {
+    color: #FF5555;
+    font-size: 14px;
+    text-align: left;
+    margin-bottom: 12px;
 }
 
 @media (max-width: 1440px) {
