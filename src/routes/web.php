@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\FavoriteController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ExhibitionController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -44,10 +45,12 @@ Route::get('/verify-email', function () {
 })->name('verification.notice');
 
 // 検索結果（仮）
-Route::get('/search', function () {
-    $query = request('query');
-    return view('search', ['query' => $query]);
-});
+//Route::get('/search', function () {
+//    $query = request('query');
+//    return view('search', ['query' => $query]);
+//});
+
+Route::get('/search', [SearchController::class, 'index'])->name('search');
 
 Route::middleware(['auth'])->group(function () {
 

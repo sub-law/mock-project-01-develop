@@ -19,11 +19,9 @@
                 </a>
             </div>
 
-            <div class="header-center">
-                <form action="/search" method="GET" class="search-form">
-                    <input type="text" name="query" placeholder="何をお探しですか？" class="search-input">
-                </form>
-            </div>
+            <form action="{{ route('search') }}" method="GET" class="search-form">
+                <input type="text" name="query" placeholder="何をお探しですか？" class="search-input">
+            </form>
 
             <div class="header-right">
                 @guest
