@@ -9,6 +9,9 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ProfileController;
 use App\Http\Controllers\Auth\FavoriteController;
+use App\Http\Controllers\CommentController;
+use App\Http\Controllers\ExhibitionController;
+use App\Http\Controllers\PurchaseController;
 use Illuminate\Support\Facades\Auth;
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +31,7 @@ Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product
 Route::get('/register', [RegisterController::class, 'show'])->name('register');
 Route::post('/register', [RegisterController::class, 'register'])->name('register.post');
 
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
+Route::get('/login', [LoginController::class, 'showloginform'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
@@ -52,12 +55,12 @@ Route::middleware(['auth'])->group(function () {
         return view('products.sell_form');
     })->name('sell.form');
 
-    Route::post('/sell', [ProductController::class, 'store'])->name('sell.store');
+    Route::post('/sell', [ExhibitionController::class, 'store'])->name('sell.store');
 
-    Route::get('/purchase/{item_id}', [ProductController::class, 'showPurchaseForm'])->name('purchase');
-    Route::POST('/purchase/{item_id}', [ProductController::class, 'purchaseconfirm'])->name('purchase.confirm');
+    Route::get('/purchase/{item_id}', [PurchaseController::class, 'showpurchaseform'])->name('purchase');
+    Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchaseconfirm'])->name('purchase.confirm');
 
-    Route::post('/comments', [ProductController::class, 'storecomment'])->name('comments.store');
+    Route::post('/comments', [CommentController::class, 'storecomment'])->name('comments.store');
 
     Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');
 

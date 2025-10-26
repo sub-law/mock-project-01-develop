@@ -6,7 +6,7 @@ touch .env
 UID=1000
 GID=1000
 
-プロジェクト直下のgitignoreの修正
+プロジェクト直下のgitignoreの修正,以下を追記
 .env
 docker/mysql/data/
 
@@ -61,21 +61,12 @@ password:password
 出品数0
 購入数0
 お気に入り2
+住所未登録
 
 
 確認画面
 ログイン画面表示:http://localhost/login
-会員登録画面表示:http://localhost/register
-メール認証誘導画面:http://localhost/verify-email
-プロフィール設定画面: http://localhost/profile_setup
-index画面：http://localhost
-商品出品画面:http://localhost/sell
-マイページ画面: http://localhost/mypage
-プロフィール編集画面: http://localhost/mypage/profile
-商品詳細画面: http://localhost/item/{item_id}
-商品購入画面: http://localhost/purchase/{item_id}
-送付先住所変更画面: http://localhost/purchase/address/{item_id}
-
+商品一覧画面：http://localhost
 
 仕様環境
 PHP: 8.4.8 (CLI)
@@ -83,11 +74,7 @@ Laravel Framework: 8.83.8
 MySQL: 8.0.26
 nginx: 1.21.1
 
-テーブル相関
-usersとproducts:一対多
-purchasesとproducts:1対1
-usersとpurchases:1対多
-usersとcomments:一対多
-usersとfavorites:一対多
-commentsとproducts:多対1
-commentsとfavorites:多対1
+あとやること
+検索機能
+応用
+テストケース

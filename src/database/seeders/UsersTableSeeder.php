@@ -35,9 +35,6 @@ class UsersTableSeeder extends Seeder
             'email' => 'userc@example.com',
             'password' => Hash::make('password'),
             'profile_image' => 'watermelon.png',
-            'postal_code' => '123-4567',
-            'address' => '東京都足立区',
-            'building_name' => 'きのこビル201',
         ]);
     }
 }

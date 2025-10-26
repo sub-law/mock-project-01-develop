@@ -8,7 +8,7 @@ use App\Http\Requests\LoginRequest;
 
 class LoginController extends Controller
 {
-    public function showLoginForm()
+    public function showloginform()
     {
         return view('auth.login');
     }
