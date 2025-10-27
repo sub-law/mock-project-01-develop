@@ -28,11 +28,8 @@ body {
     height: 36px;
 }
 
-.header-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin: 0 40px;
+.header-form {
+    display: inline;
 }
 
 .search-form {
@@ -75,6 +72,9 @@ body {
 }
 
 .alert-success {
+    max-width: 680px;
+    margin: 16px auto;
+    text-align: center;
     background-color: #e6ffed;
     color: #2f855a;
     padding: 12px 20px;

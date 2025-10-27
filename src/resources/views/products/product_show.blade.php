@@ -9,13 +9,14 @@
 @section('content')
 <div class="product-detail-container">
     <div class="product-detail-grid">
-        <!-- 左グリッド：商品画像 -->
+        
         <div class="product-image-area">
             <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
+            @if ($product->is_sold)
+            <div class="sold-label">SOLD</div>
+            @endif
         </div>
 
-        <!-- 右グリッド：商品情報 -->
-        <!-- 右グリッド：商品情報 -->
         <div class="product-summary">
             <h1 class="product-title">{{ $product->name }}</h1>
             <p class="product-brand">{{ $product->brand }}</p>
@@ -23,22 +24,45 @@
 
             <div class="product-actions">
                 <div class="action-block">
-                    {{-- <button class="like-button">★</button> --}}
-                    {{-- <span class="like-count">{{ $product->likes_count }}</span> --}}
-                    <button class="like-button"><img src="{{ asset('images/star.png') }}" alt="☆"></button>
-                    <span class="action-count">0</span>
+                    @auth
+                    <button class="like-button {{ $isFavorited ? 'liked' : '' }}" data-product-id="{{ $product->id }}">
+                        <img src="{{ asset($isFavorited ? 'images/star.on.png' : 'images/star.png') }}" alt="お気に入りボタン">
+                    </button>
+                    <span class="action-count">{{ $product->favorites->count() }}</span>
+                    @endauth
+
+                    @guest
+                    <a href="{{ route('login') }}" class="like-button">
+                        <img src="{{ asset('images/star.png') }}" alt="お気に入りボタン">
+                    </a>
+                    <span class="action-count">{{ $product->favorites->count() }}</span>
+                    @endguest
                 </div>
 
                 <div class="action-block">
-                    {{-- <span class="comment-icon">💬</span> --}}
-                    {{-- <span class="comment-count">{{ $product->comments_count }}</span> --}}
-                    <span class="comment-icon"><img src="{{ asset('images/comment.png') }}" alt="💬"></span>
-                    <span class="action-count">0</span>
+                    <img src="{{ asset('images/comment.png') }}" alt="💬">
+                    <span class="action-count">{{ $product->comments->count() }}</span>
                 </div>
             </div>
 
             <div class="product-button-area">
-                <button class="purchase-button">購入手続きへ</button>
+                @auth
+                @if (Auth::id() !== $product->seller_id)
+                @if (!$product->is_sold)
+                <a href="{{ route('purchase', ['item_id' => $product->id]) }}" class="purchase-button">購入手続きへ</a>
+                @else
+                <button class="purchase-button disabled" disabled>ただいま品切れ</button>
+                @endif
+                @endif
+                @endauth
+
+                @guest
+                @if (!$product->is_sold)
+                <a href="{{ route('login') }}" class="purchase-button">購入手続きへ</a>
+                @else
+                <button class="purchase-button disabled" disabled>ただいま品切れ</button>
+                @endif
+                @endguest
             </div>
 
             <div class="product-description-area">
@@ -65,26 +89,84 @@
             </div>
 
             <div class="product-comment-area">
-                <div class="comment-header">コメント（1）</div>
+                <div class="comment-header">コメント（{{ $product->comments->count() }}）</div>
 
+                @foreach ($product->comments as $comment)
                 <div class="comment-block">
                     <div class="comment-header-row">
-                        <div class="comment-user-icon"></div>
-                        <div class="comment-username">admin</div>
-                    </div>
-                    <div class="comment-text">こちらにコメントが入ります。</div>
-                </div>
+                        <div class="comment-user-icon">
+                            @if (!empty($comment->user->profile_image))
+                            <img src="{{ asset('storage/profile_images/' . $comment->user->profile_image) }}" alt="ユーザー画像">
+                            @else
+                            <img src="{{ asset('images/default-user.png') }}" alt="デフォルト画像">
+                            @endif
+                        </div>
 
+                        <div class="comment-username">{{ $comment->user->name }}</div>
+                    </div>
+                    <div class="comment-text">{{ $comment->content }}</div>
+                </div>
+                @endforeach
 
                 <div class="comment-form-area">
                     <div class="comment-form-title">商品へのコメント</div>
-                    <textarea class="comment-input" placeholder="コメントを入力してください..."></textarea>
-                    <button class="comment-submit-button">コメントを送信する</button>
+
+                    @auth
+                    <form action="{{ route('comments.store') }}" method="POST">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <textarea name="content" class="comment-input" placeholder="コメントを入力してください..."></textarea>
+
+                        @error('content')
+                        <div class="form-error">{{ $message }}</div>
+                        @enderror
+
+                        <button type="submit" class="comment-submit-button">コメントを送信する</button>
+                    </form>
+                    @endauth
+
+                    @guest
+                    <a href="{{ route('login') }}" class="comment-submit-button">ログインしてコメントする</a>
+                    @endguest
                 </div>
+
             </div>
-
-
         </div>
     </div>
 </div>
 @endsection
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const likeButton = document.querySelector('.like-button');
+        const actionCount = likeButton.nextElementSibling;
+        const starImg = likeButton.querySelector('img');
+
+        likeButton.addEventListener('click', function() {
+            const productId = this.dataset.productId;
+
+            fetch('/favorite/toggle', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    },
+                    body: JSON.stringify({
+                        product_id: productId
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'added') {
+                        likeButton.classList.add('liked');
+                        starImg.src = "{{ asset('images/star.on.png') }}";
+                        actionCount.textContent = parseInt(actionCount.textContent) + 1;
+                    } else if (data.status === 'removed') {
+                        likeButton.classList.remove('liked');
+                        starImg.src = "{{ asset('images/star.png') }}";
+                        actionCount.textContent = parseInt(actionCount.textContent) - 1;
+                    }
+                });
+        });
+    });
+</script>

@@ -1,4 +1,3 @@
-/* 共通フォームラッパー */
 .form-wrapper {
     width: 100%;
     max-width: 680px;
@@ -8,14 +7,12 @@
     box-sizing: border-box;
 }
 
-/* タイトル */
 .form-title {
     font-size: 36px;
     font-weight: 700;
     margin-bottom: 40px;
 }
 
-/* メッセージ見出し */
 .form-message {
     font-size: 24px;
     font-weight: 700;
@@ -38,7 +35,6 @@
     text-align: left;
 }
 
-/* ラベル */
 .form-label {
     display: block;
     font-size: 16px;
@@ -47,7 +43,6 @@
     text-align: left;
 }
 
-/* 入力欄 */
 .form-input {
     width: 100%;
     height: 57px;
@@ -59,13 +54,11 @@
     box-sizing: border-box;
 }
 
-/* テキストエリア */
 textarea.form-input {
     height: auto;
     padding: 12px;
 }
 
-/* 出品ボタン */
 .form-button {
     width: 100%;
     max-width: 680px;
@@ -81,8 +74,6 @@ textarea.form-input {
     display: block;
 }
 
-/* 画像アップロード */
-
 .form-image-box {
     width: 100%;
     max-width: 680px;
@@ -94,11 +85,19 @@ textarea.form-input {
     box-sizing: border-box;
 }
 
-/* 中央ボタン（位置指定あり） */
+.form-image-preview {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
 .form-image-button-centered {
     position: absolute;
     top: 50%;
-    /* 中央に配置 */
     left: 50%;
     transform: translate(-50%, -50%);
     width: 165px;
@@ -122,8 +121,6 @@ textarea.form-input {
     color: #fff;
 }
 
-/* カテゴリータグ（複数選択ボタン風） */
-
 .form-category-wrapper {
     margin-top: 40px;
     margin-bottom: 40px;
@@ -140,13 +137,9 @@ textarea.form-input {
 .category-tags {
     display: flex;
     flex-wrap: wrap;
-    /* 折り返しを許可 */
     gap: 10px;
-    /* タグ同士の隙間 */
     justify-content: flex-start;
-    /* 左寄せにする */
     align-items: flex-start;
-    /* 上揃え（必要なら） */
     margin-bottom: 32px;
 }
 
@@ -166,7 +159,6 @@ textarea.form-input {
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* ✅ 選択されたタグだけ塗りつぶし */
 .category-tag input[type="checkbox"]:checked+span {
     background-color: #FF5555;
     color: #fff;
@@ -209,18 +201,14 @@ select.form-input {
     left: 12px;
     transform: translateY(-50%);
     font-size: 20px;
-    /* 入力欄のフォントサイズに合わせる */
     color: #5F5F5F;
     pointer-events: none;
     line-height: 1;
-    /* 高さのズレを防ぐ */
 }
 
 .price-input {
     padding-left: 28px;
-    /* ￥の分だけ余白を確保 */
     height: 57px;
-    /* 他の入力欄と揃える */
     font-size: 16px;
     -moz-appearance: textfield;
 }
@@ -237,7 +225,15 @@ select.form-input {
     color: #ff5655;
 }
 
-/* レスポンシブ対応 */
+.form-error {
+    color: #FF5555;
+    font-size: 14px;
+    font-weight: 600;
+    margin-top: -24px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
 @media screen and (max-width: 768px) {
     .form-wrapper {
         width: 100%;
@@ -246,7 +242,6 @@ select.form-input {
         padding: 0 20px;
         box-sizing: border-box;
     }
-
 
     .form-title {
         font-size: 24px;

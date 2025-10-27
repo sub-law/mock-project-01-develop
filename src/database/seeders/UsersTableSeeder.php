@@ -11,8 +11,8 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'User A',
-            'email' => 'usera@example.com',
+            'name' => 'kiwi',
+            'email' => 'kiwi@example.com',
             'password' => Hash::make('password'),
             'profile_image' => 'kiwi.png',
             'postal_code' => '123-4567',
@@ -21,8 +21,8 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'User B',
-            'email' => 'userb@example.com',
+            'name' => 'orange',
+            'email' => 'orange@example.com',
             'password' => Hash::make('password'),
             'profile_image' => 'orange.png',
             'postal_code' => '123-4567',
@@ -31,13 +31,10 @@ class UsersTableSeeder extends Seeder
         ]);
 
         User::create([
-            'name' => 'User C',
-            'email' => 'userc@example.com',
+            'name' => 'watermelon',
+            'email' => 'watermelon@example.com',
             'password' => Hash::make('password'),
             'profile_image' => 'watermelon.png',
-            'postal_code' => '123-4567',
-            'address' => '東京都足立区',
-            'building_name' => 'きのこビル201',
         ]);
     }
 }

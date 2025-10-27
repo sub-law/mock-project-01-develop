@@ -14,7 +14,7 @@
             <img src="{{ asset('storage/profile_images/' . $user->profile_image) }}" alt="プロフィール画像" class="profile-icon">
             <p class="profile-name">{{ $user->name }}</p>
         </div>
-        <a href="{{ route('mypage.profile.edit') }}" class="edit-button">プロフィールを編集</a>
+        <a href="{{ route('mypage.profile') }}" class="edit-button">プロフィールを編集</a>
     </div>
 </div>
 

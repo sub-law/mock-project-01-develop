@@ -11,7 +11,9 @@
 
 <body>
     <header>
-        <img src="{{ asset('images/logo.svg') }}" alt="COACHTECHロゴ">
+        <a href="{{ route('index') }}" class="header-logo">
+            <img src="{{ asset('images/logo.svg') }}" alt="COACHTECHロゴ">
+        </a>
     </header>
 
     @yield('content')

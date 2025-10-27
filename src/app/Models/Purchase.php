@@ -15,15 +15,16 @@ class Purchase extends Model
         'user_id',
         'product_id',
         'payment_method',
+        'postal_code',
+        'address',
+        'building_name',
     ];
 
-    // 購入者（1対多の「多」側）
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    // 購入された商品（1対1）
     public function product()
     {
         return $this->belongsTo(Product::class);

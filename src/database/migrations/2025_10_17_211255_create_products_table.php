@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('seller_id');
             $table->unsignedBigInteger('buyer_id')->nullable();
             $table->string('name');
-            $table->string('brand');
+            $table->string('brand')->nullable();;
             $table->string('status')->nullable();
             $table->text('description');
             $table->string('image_path');
@@ -28,7 +28,6 @@ class CreateProductsTable extends Migration
 
             $table->timestamps();
 
-            // 外部キー制約
             $table->foreign('seller_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('buyer_id')->references('id')->on('users')->onDelete('set null');
         });

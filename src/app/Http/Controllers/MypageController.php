@@ -18,7 +18,6 @@ class MypageController extends Controller
             ->get()
             ->pluck('product');
 
-
         return view('mypage.mypage', compact('user', 'sellingProducts', 'purchasedProducts'));
     }
 }
