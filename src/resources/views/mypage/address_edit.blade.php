@@ -34,8 +34,9 @@
 
         <div class="form-group">
             <label for="building" class="form-label">建物名</label>
-            <input type="text" id="building" name="building" class="form-input"
+            <input type="text" id="building" name="building_name" class="form-input"
                 value="{{ old('building_name', $user->building_name) }}">
+
             @error('building_name')
             <div class="form-error">{{ $message }}</div>
             @enderror

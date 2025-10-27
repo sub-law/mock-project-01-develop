@@ -42,27 +42,28 @@ php artisan test --filter=LoginTest
 PHPコンテナから出る　Ctrl+D
 
 ダミーデータユーザー情報
-name:User A
-email:usera@example.com
+name:kiwi
+email:kiwi@example.com
 password:password
 出品数:5
 購入数:0
+お気に入り:5
 コメント:1
 
-name:User B
-email:userb@example.com
+name:orange
+email:orange@example.com
 password:password
 出品数:5
 購入数:1
 お気に入り:2
 コメント:1
 
-name:User C
-email:userc@example.com
+name:watermelon
+email:watermelon@example.com
 password:password
 出品数:0
 購入数:0
-お気に入り:2
+お気に入り:10
 コメント:1
 住所未登録
 
@@ -75,10 +76,6 @@ PHP: 8.4.8 (CLI)
 Laravel Framework: 8.83.8 
 MySQL: 8.0.26
 nginx: 1.21.1
-
-あとやること
-応用
-テストケース
 
 ER図
 ![alt text](模擬案件1ER図.png)

@@ -28,11 +28,8 @@ body {
     height: 36px;
 }
 
-.header-center {
-    flex: 1;
-    display: flex;
-    justify-content: center;
-    margin: 0 40px;
+.header-form {
+    display: inline;
 }
 
 .search-form {

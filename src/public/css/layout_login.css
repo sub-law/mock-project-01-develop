@@ -16,6 +16,11 @@ header {
     box-sizing: border-box;
 }
 
+.header-logo {
+    display: inline-block;
+    text-decoration: none;
+}
+
 header img {
     width: 370px;
     height: 36px;
