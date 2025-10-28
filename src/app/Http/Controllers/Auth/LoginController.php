@@ -23,7 +23,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => '認証に失敗しました。メールアドレスまたはパスワードをご確認ください。',
+            'auth' => '認証に失敗しました。メールアドレスまたはパスワードをご確認ください。',
         ]);
     }
 

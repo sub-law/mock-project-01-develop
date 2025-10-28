@@ -20,7 +20,7 @@
         @enderror
 
         <label for="email" class="form-label">メールアドレス</label>
-        <input type="email" id="email" name="email" class="form-input" value="{{ old('email') }}" >
+        <input type="text" id="email" name="email" class="form-input" value="{{ old('email') }}" >
         @error('email')
         <div class="form-error">{{ $message }}</div>
         @enderror

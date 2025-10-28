@@ -39,7 +39,7 @@ return [
     'digits_between'       => 'This must be between :min and :max digits.',
     'dimensions'           => 'This image has invalid dimensions.',
     'distinct'             => 'This field has a duplicate value.',
-    'email'                => 'This must be a valid email address.',
+    //'email'                => 'This must be a valid email address.',
     'ends_with'            => 'This must end with one of the following: :values.',
     'exists'               => 'The selected value is invalid.',
     'file'                 => 'The content must be a file.',
@@ -130,10 +130,10 @@ return [
     |
     */
 
-    'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
-        ],
-    ],
+    //'custom' => [
+    //   'attribute-name' => [
+    //       'rule-name' => 'custom-message',
+    //    ],
+    //],
 
 ];
