@@ -48,15 +48,15 @@ password:password
 出品数:5
 購入数:0
 お気に入り:5
-コメント:1
+コメント:1(ノートPC)
 
 name:orange
 email:orange@example.com
 password:password
 出品数:5
-購入数:1
+購入数:1(腕時計)
 お気に入り:2
-コメント:1
+コメント:1(ノートPC)
 
 name:watermelon
 email:watermelon@example.com
@@ -64,7 +64,7 @@ password:password
 出品数:0
 購入数:0
 お気に入り:10
-コメント:1
+コメント:1(腕時計)
 住所未登録
 
 確認画面
