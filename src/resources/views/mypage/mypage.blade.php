@@ -11,7 +11,8 @@
 <div class="mypage-wrapper">
     <div class="profile-box">
         <div class="profile-content">
-            <img src="{{ asset('storage/profile_images/' . $user->profile_image) }}" alt="プロフィール画像" class="profile-icon">
+            <img src="{{ asset('storage/profile_images/' . ($user->profile_image ?? 'no.image.png')) }}" alt="プロフィール画像" class="profile-icon">
+
             <p class="profile-name">{{ $user->name }}</p>
         </div>
         <a href="{{ route('mypage.profile') }}" class="edit-button">プロフィールを編集</a>
