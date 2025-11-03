@@ -1,9 +1,9 @@
 @extends('layouts.login_layout')
 
-@section('title', 'メール認証のお願い')
+@section('title', 'メール認証誘導画面')
 
 @section('styles')
-<link rel="stylesheet" href="{{ asset('css/login.css') }}">
+<link rel="stylesheet" href="{{ asset('css/verify.css') }}">
 @endsection
 
 @section('content')
@@ -15,11 +15,19 @@
         メール認証を完了してください。
     </p>
 
-    {{-- <a href="{{ route('verification.notice') }}" class="form-button-link">認証はこちらから</a> --}}
+    <div class="form-actions">
+        <a href="{{ route('profile.setup') }}" class="form-button">認証はこちらから</a>
+    </div>
 
-    {{-- <form method="POST" action="{{ route('verification.send') }}">
-    @csrf
-    <button type="submit" class="form-button-secondary">認証メールを再送する</button>
-    </form> --}}
+    <div class="form-resend">
+        <form method="POST" action="{{ route('verification.send') }}">
+            @csrf
+            <button type="submit" class="form-link-button">認証メールを再送する</button>
+        </form>
+    </div>
+
+    @if (session('message'))
+    <div class="form-success">{{ session('message') }}</div>
+    @endif
 </div>
 @endsection

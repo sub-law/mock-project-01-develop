@@ -67,6 +67,11 @@ password:password
 コメント:1(腕時計)
 住所未登録
 
+新規登録用データ
+name:melon
+email:melon@example.com
+password:password
+
 確認画面
 ログイン画面表示:http://localhost/login
 商品一覧画面：http://localhost
