@@ -49,6 +49,7 @@ password:password
 購入数:0
 お気に入り:5
 コメント:1(ノートPC)
+メール認証済み
 
 name:orange
 email:orange@example.com
@@ -75,6 +76,7 @@ password:password
 確認画面
 ログイン画面表示:http://localhost/login
 商品一覧画面：http://localhost
+DB画面：http://localhost:8080
 
 仕様環境
 PHP: 8.4.8 (CLI)

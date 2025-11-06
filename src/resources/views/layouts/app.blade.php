@@ -47,12 +47,6 @@
     </div>
     @endif
 
-    @if (session('message'))
-    <div class="alert alert-success">
-        {{ session('message') }}
-    </div>
-    @endif
-
     @yield('content')
 
     <script>
@@ -61,6 +55,9 @@
             if (alert) {
                 alert.style.transition = 'opacity 0.5s';
                 alert.style.opacity = '0';
+                setTimeout(() => {
+                    alert.style.display = 'none';
+                }, 500);
             }
         }, 3000);
     </script>

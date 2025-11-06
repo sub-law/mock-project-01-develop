@@ -12,8 +12,11 @@ use App\Models\Purchase;
 use App\Models\Comment;
 use App\Models\Favorite;
 
+/**
+ * @method bool hasVerifiedEmail()
+ */
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -71,3 +74,4 @@ class User extends Authenticatable
         return $this->hasMany(Favorite::class);
     }
 }
+

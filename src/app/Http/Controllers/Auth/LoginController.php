@@ -19,7 +19,15 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect('/');
+
+            /** @var \App\Models\User $user */
+            $user = Auth::user();
+
+            if (!$user->hasVerifiedEmail()) {
+                return redirect()->route('verification.notice');
+            }
+
+            return redirect()->route('index');
         }
 
         return back()->withErrors([
@@ -27,9 +35,10 @@ class LoginController extends Controller
         ]);
     }
 
+
     public function logout()
     {
         Auth::logout();
-        return redirect('/')->with('message', 'ログアウトしました');
+        return redirect('/')->with('status', 'ログアウトしました');
     }
 }

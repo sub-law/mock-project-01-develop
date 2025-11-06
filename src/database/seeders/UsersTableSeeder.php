@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Carbon\Carbon;
 
 class UsersTableSeeder extends Seeder
 {
@@ -18,6 +19,7 @@ class UsersTableSeeder extends Seeder
             'postal_code' => '123-4567',
             'address' => '東京都足立区',
             'building_name' => 'きのこビル101',
+            'email_verified_at' => Carbon::now(),
         ]);
 
         User::create([
@@ -38,3 +40,5 @@ class UsersTableSeeder extends Seeder
         ]);
     }
 }
+
+

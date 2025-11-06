@@ -16,7 +16,7 @@
     </p>
 
     <div class="form-actions">
-        <a href="{{ route('profile.setup') }}" class="form-button">認証はこちらから</a>
+        <a href="http://localhost:8025" target="_blank" class="form-button">認証はこちらから</a>
     </div>
 
     <div class="form-resend">
@@ -26,8 +26,5 @@
         </form>
     </div>
 
-    @if (session('message'))
-    <div class="form-success">{{ session('message') }}</div>
-    @endif
 </div>
 @endsection

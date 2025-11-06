@@ -57,14 +57,16 @@
     color: #ff5655;
 }
 
-.form-success {
-    margin: 16px 0;
-    padding: 12px;
+.alert-success {
+    max-width: 680px;
+    margin: 16px auto;
+    text-align: center;
     background-color: #e6ffed;
-    border-left: 4px solid #55cc88;
-    color: #228855;
+    color: #2f855a;
+    padding: 12px 20px;
+    margin: 16px;
+    border-radius: 6px;
     font-weight: bold;
-    border-radius: 4px;
 }
 
 @media screen and (max-width: 768px) {

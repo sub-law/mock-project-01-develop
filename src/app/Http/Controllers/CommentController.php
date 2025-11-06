@@ -17,6 +17,6 @@ class CommentController extends Controller
             'content' => $request->input('content'),
         ]);
 
-        return redirect()->back()->with('message', 'コメントを投稿しました！');
+        return redirect()->back()->with('status', 'コメントを投稿しました！');
     }
 }

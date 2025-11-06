@@ -11,12 +11,6 @@
 <div class="form-wrapper">
     <h1 class="form-title">プロフィール設定</h1>
 
-    @if (session('status'))
-    <div class="form-success">
-        {{ session('status') }}
-    </div>
-    @endif
-
     <form method="POST" action="{{ route('profile.update') }}" enctype="multipart/form-data">
         @csrf
 

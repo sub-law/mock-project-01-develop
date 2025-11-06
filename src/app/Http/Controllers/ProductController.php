@@ -42,7 +42,7 @@ class ProductController extends Controller
 
         if ($product->is_sold) {
             return redirect()->route('product_show', ['item_id' => $item_id])
-                ->with('message', 'この商品はすでに購入されています');
+                ->with('status', 'この商品はすでに購入されています');
         }
 
         return view('products.purchase', compact('product', 'user'));

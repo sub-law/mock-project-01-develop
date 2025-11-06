@@ -22,6 +22,6 @@ class AddressController extends Controller
         $user->update($request->only(['postal_code', 'address', 'building_name']));
 
         return redirect()->route('purchase', ['item_id' => $item_id])
-            ->with('message', '住所を更新しました');
+            ->with('status', '住所を更新しました');
     }
 }

@@ -17,13 +17,8 @@ use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| Public Routes
 |--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
 */
 
 Route::get('/', [ProductController::class, 'index'])->name('index');
@@ -37,9 +32,20 @@ Route::get('/login', [LoginController::class, 'showloginform'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/verify-email', fn() => view('auth.verify'))
+/*
+|--------------------------------------------------------------------------
+| Email Verification Routes
+|--------------------------------------------------------------------------
+*/
+
+Route::get('/email/verify', fn() => view('auth.verify'))
     ->middleware('auth')
     ->name('verification.notice');
+
+
+//Route::get('/verify-email', fn() => view('auth.verify'))
+//    ->middleware('auth')
+//   ->name('verification.notice');
 
 Route::get('/verify-email/{id}/{hash}', VerifyEmailController::class)
     ->middleware(['auth', 'signed', 'throttle:6,1'])
@@ -49,9 +55,21 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
-Route::middleware(['auth', 'verified'])->group(function () {
-
+/*
+|--------------------------------------------------------------------------
+| Authenticated Routes (Login Required)
+|--------------------------------------------------------------------------
+*/
+Route::middleware('auth')->group(function () {
     Route::get('/profile_setup', [ProfileController::class, 'setup'])->name('profile.setup');
+});
+
+/*
+|--------------------------------------------------------------------------
+| Verified Routes (Login + Email Verified Required)
+|--------------------------------------------------------------------------
+*/
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/profile_setup', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('/sell', fn() => view('products.sell_form'))->name('sell.form');
@@ -71,4 +89,5 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/mypage/profile', 'profile')->name('mypage.profile');
         Route::put('/mypage/profile', 'edit')->name('mypage.profile.edit');
     });
+
 });
