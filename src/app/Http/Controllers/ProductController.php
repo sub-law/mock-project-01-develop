@@ -13,7 +13,14 @@ class ProductController extends Controller
         $tab = $request->query('tab');
 
         if ($tab === 'mylist' && auth()->check()) {
-            $products = auth()->user()->favorites->pluck('product');
+            $user = auth()->user();
+
+            $products = $user->favorites
+                ->pluck('product')
+                ->filter(function ($product) use ($user) {
+                    return $product->seller_id !== $user->id;
+                })
+                ->values();
         } else {
             $products = Product::when(auth()->check(), function ($query) {
                 $query->where('seller_id', '!=', auth()->id());
@@ -23,16 +30,20 @@ class ProductController extends Controller
         return view('products.index', compact('products'));
     }
 
-    public function show($item_id)
+    public function show($item_id, Request $request)
     {
         $product = Product::with(['favorites', 'comments', 'seller'])->findOrFail($item_id);
 
         $isFavorited = false;
+        $isOwner = Auth::check() && Auth::id() === $product->seller_id;
+        $isFromMypage = $request->query('from') === 'mypage';
+        $isReadonly = $isOwner || $isFromMypage;
+
         if (Auth::check()) {
             $isFavorited = $product->favorites->contains('user_id', Auth::id());
         }
 
-        return view('products.product_show', compact('product', 'isFavorited'));
+        return view('products.product_show', compact('product', 'isFavorited', 'isReadonly'));
     }
 
     public function showpurchaseform($item_id)
