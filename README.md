@@ -53,7 +53,7 @@ email:kiwi@example.com
 password:password
 出品数:5
 購入数:0
-お気に入り:5
+お気に入り:全商品(マイリストには自身が出品した商品は表示されません)
 コメント:1(ノートPC)
 メール認証済み
 
@@ -62,7 +62,7 @@ email:orange@example.com
 password:password
 出品数:5
 購入数:1(腕時計)
-お気に入り:2
+お気に入り:5(自身が出品した商品を除く全て)
 コメント:1(ノートPC)
 メール未認証
 
@@ -71,7 +71,7 @@ email:watermelon@example.com
 password:password
 出品数:0
 購入数:0
-お気に入り:10
+お気に入り:全商品
 コメント:1(腕時計)
 メール未認証
 住所未登録
@@ -96,7 +96,7 @@ mailhog認証画面：http://localhost:8025/
 2. メール認証誘導画面に遷移、「認証はこちらから」のボタンをクリック
 3. 以下のURLから MailHog にアクセスするので、メール内容を確認してください  
    👉 [http://localhost:8025](http://localhost:8025)
-4. メール本文内の「メール認証リンク」または「Verify Email Address」をクリックすると、認証が完了し、初回はプロフィール設定画面に遷移します
+4. 自身が登録したメール本文内の「メールアドレスを確認する」または「Verify Email Address」をクリックすると、認証が完了し、初回はプロフィール設定画面に遷移します
 
 仕様環境
 PHP: 8.4.8 (CLI)

@@ -9,7 +9,7 @@
 @section('content')
 <div class="product-detail-container">
     <div class="product-detail-grid">
-        
+
         <div class="product-image-area">
             <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
             @if ($product->is_sold)
@@ -23,6 +23,7 @@
             <p class="product-price">¥{{ number_format($product->price) }} <span class="tax-included">（税込）</span></p>
 
             <div class="product-actions">
+                @if (!$isReadonly)
                 <div class="action-block">
                     @auth
                     <button class="like-button {{ $isFavorited ? 'liked' : '' }}" data-product-id="{{ $product->id }}">
@@ -38,6 +39,7 @@
                     <span class="action-count">{{ $product->favorites->count() }}</span>
                     @endguest
                 </div>
+                @endif
 
                 <div class="action-block">
                     <img src="{{ asset('images/comment.png') }}" alt="💬">
@@ -45,9 +47,12 @@
                 </div>
             </div>
 
+            @if (!$isReadonly)
             <div class="product-button-area">
                 @auth
-                @if (Auth::id() !== $product->seller_id)
+                @if (Auth::id() === $product->seller_id)
+                <button class="seller-message-button">この商品の出品者はあなたです</button>
+                @else
                 @if (!$product->is_sold)
                 <a href="{{ route('purchase', ['item_id' => $product->id]) }}" class="purchase-button">購入手続きへ</a>
                 @else
@@ -64,6 +69,8 @@
                 @endif
                 @endguest
             </div>
+            @endif
+
 
             <div class="product-description-area">
                 <h2 class="product-description-title">商品説明</h2>
@@ -108,6 +115,7 @@
                 </div>
                 @endforeach
 
+                @if (!$isReadonly)
                 <div class="comment-form-area">
                     <div class="comment-form-title">商品へのコメント</div>
 
@@ -129,7 +137,7 @@
                     <a href="{{ route('login') }}" class="comment-submit-button">ログインしてコメントする</a>
                     @endguest
                 </div>
-
+                @endif
             </div>
         </div>
     </div>

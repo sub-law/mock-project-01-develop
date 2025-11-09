@@ -8,6 +8,14 @@
 
 @section('content')
 <div class="form-wrapper">
+
+    @if (session('message'))
+    <div class="flash-message">
+        {{ session('message') }}
+    </div>
+    @endif
+
+
     <h1 class="form-title">メール認証のお願い</h1>
 
     <p class="form-message">
