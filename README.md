@@ -38,7 +38,6 @@ php artisan db:seed
 ## Stripeの設定
 Stripeのテストキーを `.env` に記述してください（`.env.example` にも記載済みです）
 
-
 ## テストコマンこれから実装予定
 
 PHPコンテナから出る　Ctrl+D
