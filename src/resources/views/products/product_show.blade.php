@@ -13,7 +13,7 @@
         <div class="product-image-area">
             <img src="{{ asset('storage/products/' . $product->image_path) }}" alt="商品画像" class="product-image">
             @if ($product->is_sold)
-            <div class="sold-label">SOLD</div>
+            <div class="sold-label">Sold</div>
             @endif
         </div>
 
