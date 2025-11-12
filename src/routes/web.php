@@ -14,6 +14,9 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use Stripe\Stripe;
+use Stripe\Checkout\Session;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -71,7 +74,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/sell', [ExhibitionController::class, 'store'])->name('sell.store');
 
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showpurchaseform'])->name('purchase');
+    /*Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchaseconfirm'])->name('purchase.confirm');
+    */
+
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchaseconfirm'])->name('purchase.confirm');
+    Route::get('/purchase/cancel', fn() => redirect()->route('index')->with('error', '決済がキャンセルされました'))->name('purchase.cancel');
+    Route::get('/purchase/success/{item_id}', [PurchaseController::class, 'success'])->name('purchase.success');
+
 
     Route::post('/comments', [CommentController::class, 'storecomment'])->name('comments.store');
     Route::post('/favorite/toggle', [FavoriteController::class, 'toggle'])->name('favorite.toggle');

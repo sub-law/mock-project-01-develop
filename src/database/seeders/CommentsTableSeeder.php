@@ -17,8 +17,8 @@ class CommentsTableSeeder extends Seeder
 
         Comment::create([
             'user_id' => 1,
-            'product_id' => 5,
-            'content' => 'このノートPC、スペック気になります',
+            'product_id' => 6,
+            'content' => 'カラオケ好きには必須アイテム',
         ]);
 
         Comment::create([

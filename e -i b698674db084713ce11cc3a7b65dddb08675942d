@@ -1,0 +1,131 @@
+[33mcommit da5ed0bd1d14f8db0b77e48aa513cad748a21a8e[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/stripe-testmode[m[33m)[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Wed Nov 12 18:35:59 2025 +0900
+
+    ストライプ機能の実装、READMEの再修正
+
+[33mcommit b698674db084713ce11cc3a7b65dddb08675942d[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Wed Nov 12 18:33:43 2025 +0900
+
+    ストライプ機能の実装、READMEの再修正
+
+[33mcommit 0b47138a94df5441547f1db3d7de2635e0fddfe8[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Wed Nov 12 18:28:30 2025 +0900
+
+    ストライプ機能の実装、READMEの修正
+
+[33mcommit f7a171b7063be0cac73f1729fff4215b66da22a1[m[33m ([m[1;31morigin/feature/email-verification-02[m[33m, [m[1;32mfeature/email-verification-02[m[33m)[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Sun Nov 9 11:24:46 2025 +0900
+
+    各種修正
+
+[33mcommit 0b1597e72a29a89ff12da9906eb3a80159943bdb[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Thu Nov 6 22:02:00 2025 +0900
+
+    メール認証実装その4
+
+[33mcommit e6584a4fe1a5686cab4c85210ae23684fb8f831a[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Thu Nov 6 19:34:33 2025 +0900
+
+    メール認証実装その3
+
+[33mcommit f3419392024d07ce106bf081d1a789bdd743fdbe[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Mon Nov 3 18:35:29 2025 +0900
+
+    認証機能仮実装
+
+[33mcommit b7cc351f6e1eb82b0db775fa53c3af9b5f91c472[m[33m ([m[1;31morigin/develop[m[33m, [m[1;32mstripe[m[33m, [m[1;32mdevelop[m[33m)[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Tue Oct 28 21:48:24 2025 +0900
+
+    微調整
+
+[33mcommit 0a5e08cd1fb5424ee5b3117aba494defa465fd9e[m[33m ([m[1;32mstep05[m[33m)[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Mon Oct 27 19:04:25 2025 +0900
+
+    基本機能の実装と修正
+
+[33mcommit 155858ea65f4903e8663eb24d34e8b8d3d0b59ae[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Sun Oct 26 18:50:50 2025 +0900
+
+    基本機能の実装完了
+
+[33mcommit f9224efb97d21480245303855c202a1086274a32[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Sun Oct 26 12:32:07 2025 +0900
+
+    コントローラ修正
+
+[33mcommit d25db9802bcf644a4254023fe82b0325a0d3ea01[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Tue Oct 21 22:51:45 2025 +0900
+
+    10/21
+
+[33mcommit 5a5f6a70891cbc86be3dd0782f1357d3d895882c[m[33m ([m[1;32mstep04[m[33m)[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Tue Oct 21 20:34:43 2025 +0900
+
+    途中経過
+
+[33mcommit 760918286a588a271a6954a42d5f208f19a829f6[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Sun Oct 19 23:07:17 2025 +0900
+
+    10/19
+
+[33mcommit 3cd8421b0855079dfa420633250c442787fe3a42[m[33m ([m[1;32mfeature/relationship-setup[m[33m)[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Fri Oct 17 22:15:47 2025 +0900
+
+    マイグレーション前
+
+[33mcommit 381fa7c546d0686f9963fd49610e8aa3debf78ed[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Thu Oct 16 20:11:07 2025 +0900
+
+    ER図の作成
+
+[33mcommit 4ba126bea406dc9cdd018f664f852deee52ac710[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Mon Oct 13 20:37:20 2025 +0900
+
+    ビュー画面作成その4
+
+[33mcommit 48cc864bdfb250aca5953e48966a6108bb662bbb[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Mon Oct 13 10:34:12 2025 +0900
+
+    ビュー画面作成その3
+
+[33mcommit 3d12048b4cb182a62bbdc94cd8018b50f4fd944f[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Sun Oct 12 17:19:45 2025 +0900
+
+    ビュー画面作成途中-3
+
+[33mcommit 49844b504983ed18b8a84cf60de8c5f3f54255ba[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Wed Oct 8 23:30:11 2025 +0900
+
+    ブレード作成中
+
+[33mcommit e77b4513f502debf47728be4b58b75d92d644bc8[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Wed Oct 8 18:48:58 2025 +0900
+
+    first commit
+
+[33mcommit 7ad67f136d6feda2637fdcebba05b017f30c738e[m
+Author: さぶろう <shinya.kikuchi.8010@gmail.com>
+Date:   Mon Sep 8 19:54:15 2025 +0900
+
+    first commit

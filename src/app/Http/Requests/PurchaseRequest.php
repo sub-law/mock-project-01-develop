@@ -45,7 +45,7 @@ class PurchaseRequest extends FormRequest
         return [
             'payment_method.required' => '支払い方法を選択してください',
             'payment_method.in' => '支払い方法の選択肢が不正です',
-            'address.required' => '配送先を選択してください', // ← これは残してOK（withValidatorで使う）
+            'address.required' => '配送先を選択してください', 
         ];
     }
 }

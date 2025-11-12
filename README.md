@@ -9,10 +9,6 @@ touch .env
 UID=1000
 GID=1000
 
-プロジェクト直下のgitignoreの修正,以下を追記
-.env
-docker/mysql/data/
-
 Docker ビルド 
 docker-compose up -d --build
 
@@ -39,9 +35,11 @@ php artisan migrate
 ダミーデータ作成
 php artisan db:seed
 
-テストコマンド
-php artisan test --env=testing
-php artisan test --filter=LoginTest
+## Stripeの設定
+Stripeのテストキーを `.env` に記述してください（`.env.example` にも記載済みです）
+
+
+## テストコマンこれから実装予定
 
 PHPコンテナから出る　Ctrl+D
 
@@ -53,8 +51,8 @@ email:kiwi@example.com
 password:password
 出品数:5
 購入数:0
-お気に入り:全商品(マイリストには自身が出品した商品は表示されません)
-コメント:1(ノートPC)
+お気に入り:全商品(自身が出品した商品に関してはお気に入りの登録がしてあっても、マイリストタブには表示されない仕様に設定してあります、確認用のパロメータとなっています)
+コメント:1(マイク)
 メール認証済み
 
 name:orange
@@ -80,6 +78,8 @@ password:password
 name:melon
 email:melon@example.com
 password:password
+## 補足
+新規登録ユーザーは自信が出品した商品に対して、お気に入り機能・コメント機能は使えない仕様となっています
 
 ## 主なルート一覧
 本プロジェクトのルート構成（URL・メソッド・ミドルウェア）は、別途提出するスプレッドシートに記載しています。  
@@ -97,6 +97,14 @@ mailhog認証画面：http://localhost:8025/
 3. 以下のURLから MailHog にアクセスするので、メール内容を確認してください  
    👉 [http://localhost:8025](http://localhost:8025)
 4. 自身が登録したメール本文内の「メールアドレスを確認する」または「Verify Email Address」をクリックすると、認証が完了し、初回はプロフィール設定画面に遷移します
+
+### stripeのテスト
+1. 購入画面でクレジットを選択し購入ボタンをクリックする
+2. カード番号4242 4242 4242 4242を入力、MM(月)/YY(年)・セキュリティコードは適当な3桁の数字を入力
+3. 名前は適当な名前を入力
+4. 支払うボタンをクリックする
+## 補足
+StripeのCheckout画面では、カード番号以外の入力値（名前・メールアドレスなど）はサンドボックス環境ではバリデーションされません。 Laravel側で事前にユーザー情報や商品状態を確認し、購入完了後にDBへ記録することで、整合性を担保しています。
 
 仕様環境
 PHP: 8.4.8 (CLI)
