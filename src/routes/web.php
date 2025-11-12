@@ -74,9 +74,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/sell', [ExhibitionController::class, 'store'])->name('sell.store');
 
     Route::get('/purchase/{item_id}', [PurchaseController::class, 'showpurchaseform'])->name('purchase');
-    /*Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchaseconfirm'])->name('purchase.confirm');
-    */
-
+    
     Route::post('/purchase/{item_id}', [PurchaseController::class, 'purchaseconfirm'])->name('purchase.confirm');
     Route::get('/purchase/cancel', fn() => redirect()->route('index')->with('error', '決済がキャンセルされました'))->name('purchase.cancel');
     Route::get('/purchase/success/{item_id}', [PurchaseController::class, 'success'])->name('purchase.success');

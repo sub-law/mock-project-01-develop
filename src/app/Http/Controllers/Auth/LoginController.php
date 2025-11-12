@@ -31,7 +31,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'auth' => '認証に失敗しました。メールアドレスまたはパスワードをご確認ください。',
+            'auth' => 'ログイン情報が登録されていません',
         ]);
     }
 
