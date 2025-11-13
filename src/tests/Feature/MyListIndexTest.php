@@ -58,37 +58,44 @@ class MyListIndexTest extends TestCase
 
     }
 
-
     // 設計メモ②：購入済み商品には「Sold」ラベルが表示される
     public function test_購入済み商品には_Sold_ラベルが表示される()
     {
-        $user = User::create([
-            'name' => '太郎',
-            'email' => 'test@example.com',
+        $seller = User::create([
+            'name' => '出品者',
+            'email' => 'seller@example.com',
+            'password' => bcrypt('password123'),
+        ]);
+
+        $buyer = User::create([
+            'name' => '購入者',
+            'email' => 'buyer@example.com',
             'password' => bcrypt('password123'),
         ]);
 
         $product = Product::create([
-            'seller_id' => $user->id,
-            'buyer_id' => $user->id, // SOLD判定に必要
+            'seller_id' => $seller->id,
+            'buyer_id' => $buyer->id,
             'name' => '購入済み商品',
-            'description' => '説明',
-            'image_path' => 'sold.jpg',
-            'category' => 'カテゴリ',
-            'condition' => '良好',
+            'brand' => 'ブランドC',
+            'status' => '中古',
+            'description' => '説明C',
+            'image_path' => 'images/c.jpg',
+            'category' => 'カテゴリC',
+            'condition' => '傷あり',
             'price' => 3000,
         ]);
 
         Favorite::create([
-            'user_id' => $user->id,
+            'user_id' => $buyer->id,
             'product_id' => $product->id,
         ]);
 
-        $user->load('favorites.product');
+        $buyer->load('favorites.product');
 
-        $this->actingAs($user);
-        
+        $this->actingAs($buyer);
         $response = $this->get('/?tab=mylist');
+
         $response->assertStatus(200);
         $response->assertSee('Sold');
     }

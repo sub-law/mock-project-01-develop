@@ -16,9 +16,11 @@ class ProductController extends Controller
             $user = auth()->user();
 
             $products = $user->favorites
-                ->pluck('product')
+                ->map(function ($favorite) {
+                    return $favorite->product;
+                })
                 ->filter(function ($product) use ($user) {
-                    return $product->seller_id !== $user->id;
+                    return $product && $product->seller_id !== $user->id;
                 })
                 ->values();
         } else {
