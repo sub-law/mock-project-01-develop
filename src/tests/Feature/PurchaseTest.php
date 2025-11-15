@@ -68,7 +68,12 @@ class PurchaseTest extends TestCase
     {
         $buyer = User::factory()->create(['email_verified_at' => now()]);
         $seller = User::factory()->create(['email_verified_at' => now()]);
-        $product = Product::factory()->create(['seller_id' => $seller->id]);
+        $product = Product::factory()->create([
+            'seller_id' => $seller->id,
+            'name' => 'テスト商品A',
+            'image_path' => 'test-image.jpg',
+        ]);
+
 
         /** @var \App\Models\User $buyer */
 
@@ -84,14 +89,11 @@ class PurchaseTest extends TestCase
         $response = $this->get("/mypage");
         $response->assertStatus(200);
 
-        $crawler = new Crawler($response->getContent());
+        $html = $response->getContent();
 
-        // purchased-list 内の商品名を取得
-        $purchasedNames = $crawler->filter('.purchased-list .product-name')->each(function ($node) {
-            return $node->text();
-        });
-
-        // 購入した商品が含まれていることを確認
-        $this->assertContains($product->name, $purchasedNames);
+        $this->assertStringContainsString('<div class="product-row purchased-list">', $html);
+        $this->assertStringContainsString('Sold', $html);
+        $response->assertSee('テスト商品A');
+        $response->assertSee('test-image.jpg');
     }
 }

@@ -18,16 +18,24 @@ class ProductIndexTest extends TestCase
 
         Product::factory()->create([
             'name' => '商品A',
+            'image_path' => 'test1-image.jpg',
         ]);
 
         Product::factory()->create([
             'name' => '商品B',
+            'image_path' => 'test2-image.jpg',
         ]);
+
+        $this->assertEquals(2, Product::count());
 
         $response = $this->get('/');
         $response->assertStatus(200);
         $response->assertSeeText('商品A');
+        $response->assertSee('test1-image.jpg');
         $response->assertSeeText('商品B');
+        $response->assertSee('test2-image.jpg');
+
+        $this->assertStringContainsString('<img', $response->getContent());
     }
 
     public function test_購入済み商品には_Sold_ラベルが表示される()

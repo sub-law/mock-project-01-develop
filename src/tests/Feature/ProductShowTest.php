@@ -64,6 +64,7 @@ class ProductShowTest extends TestCase
         $response->assertSee('コメント（1）');
         $response->assertSee('コメント者');
         $response->assertSee('古着');
+        $this->assertStringContainsString('<img', $response->getContent());
     }
 
     public function test_複数選択されたカテゴリが表示されているか()
