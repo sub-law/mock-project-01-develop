@@ -14,15 +14,10 @@ class SearchController extends Controller
 
         if ($tab === 'mylist' && auth()->check()) {
             $products = auth()->user()->favorites->pluck('product')->filter(function ($product) use ($query) {
-                return str_contains($product->name, $query) || str_contains($product->brand, $query);
+                return str_contains($product->name, $query);
             });
-        } 
-        
-        else {
-            $products = Product::where(function ($queryBuilder) use ($query) {
-                $queryBuilder->where('name', 'like', "%{$query}%")
-                    ->orWhere('brand', 'like', "%{$query}%");
-            })
+        } else {
+            $products = Product::where('name', 'like', "%{$query}%")
                 ->when(auth()->check(), function ($queryBuilder) {
                     $queryBuilder->where('seller_id', '!=', auth()->id());
                 })

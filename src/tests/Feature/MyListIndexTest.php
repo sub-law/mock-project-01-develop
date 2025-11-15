@@ -12,96 +12,60 @@ class MyListIndexTest extends TestCase
 {
     use RefreshDatabase;
 
-    // 設計メモ①：いいねした商品だけが表示される
     public function test_いいねした商品だけが表示される()
     {
-        $user = User::create([
-            'name' => '太郎',
-            'email' => 'test@example.com',
-            'password' => bcrypt('password123'),
-        ]);
+        $seller = User::factory()->create(['email_verified_at' => now()]);
+        $favoriteUser = User::factory()->create(['email_verified_at' => now()]);
 
-        $favoritesProduct = Product::create([
-            'seller_id' => $user->id,
+        $favoriteProduct = Product::factory()->create([
             'name' => 'いいね商品',
-            'description' => '説明',
-            'image_path' => 'like.jpg',
-            'category' => 'カテゴリ',
-            'condition' => '良好',
-            'price' => 1000,
+            'seller_id' => $seller->id,
         ]);
 
-        $otherProduct = Product::create([
-            'seller_id' => $user->id,
+        $unlikedProduct = Product::factory()->create([
             'name' => '非いいね商品',
-            'description' => '説明',
-            'image_path' => 'other.jpg',
-            'category' => 'カテゴリ',
-            'condition' => '良好',
-            'price' => 2000,
+            'seller_id' => $seller->id,
         ]);
 
-        Favorite::create([
-            'user_id' => $user->id,
-            'product_id' => $favoritesProduct->id,
+        Favorite::factory()->create([
+            'user_id' => $favoriteUser->id,
+            'product_id' => $favoriteProduct->id,
         ]);
 
-        $user->refresh();
-        $user->load('favorites.product');
+        /** @var \App\Models\User $favoriteUser */
 
-        $this->actingAs($user);
+        $this->actingAs($favoriteUser);
         $response = $this->get('/?tab=mylist');
 
         $response->assertStatus(200);
         $response->assertSee('いいね商品');
         $response->assertDontSee('非いいね商品');
-
     }
 
-    // 設計メモ②：購入済み商品には「Sold」ラベルが表示される
     public function test_購入済み商品には_Sold_ラベルが表示される()
     {
-        $seller = User::create([
-            'name' => '出品者',
-            'email' => 'seller@example.com',
-            'password' => bcrypt('password123'),
-        ]);
+        $viewer = User::factory()->create(['email_verified_at' => now()]);
+        $seller = User::factory()->create(['email_verified_at' => now()]);
+        $buyer = User::factory()->create(['email_verified_at' => now()]);
 
-        $buyer = User::create([
-            'name' => '購入者',
-            'email' => 'buyer@example.com',
-            'password' => bcrypt('password123'),
-        ]);
-
-        $product = Product::create([
+        $product = Product::factory()->create([
             'seller_id' => $seller->id,
-            'buyer_id' => $buyer->id,
-            'name' => '購入済み商品',
-            'brand' => 'ブランドC',
-            'status' => '中古',
-            'description' => '説明C',
-            'image_path' => 'images/c.jpg',
-            'category' => 'カテゴリC',
-            'condition' => '傷あり',
-            'price' => 3000,
+            'buyer_id' => $buyer->id,          
         ]);
 
-        Favorite::create([
-            'user_id' => $buyer->id,
+        Favorite::factory()->create([
+            'user_id' => $viewer->id,
             'product_id' => $product->id,
         ]);
 
-        $buyer->load('favorites.product');
-
-        $this->actingAs($buyer);
+        /** @var \App\Models\User $viewer */
+        $this->actingAs($viewer);
         $response = $this->get('/?tab=mylist');
 
         $response->assertStatus(200);
         $response->assertSee('Sold');
     }
 
-
-    // 設計メモ③：未認証の場合は何も表示されない
     public function test_未認証の場合は何も表示されない()
     {
         $response = $this->get('/?tab=mylist');

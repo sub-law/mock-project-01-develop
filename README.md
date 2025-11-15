@@ -38,7 +38,23 @@ php artisan db:seed
 ## Stripeの設定
 Stripeのテストキーを `.env` に記述してください（`.env.example` にも記載済みです）
 
-## テストコマンこれから実装予定
+## テストケース確認コマンド
+全テスト：php artisan test
+ID1「会員登録機能」：php artisan test tests/Feature/RegisterTest.php
+ID2＆3「ログイン・ログアウト機能」：php artisan test tests/Feature/LoginTest.php
+ID4「商品一覧取得」：php artisan test tests/Feature/ProductIndexTest.php
+ID5「マイリスト一覧取得」：php artisan test tests/Feature/MyListIndexTest.php
+ID6「商品検索機能」: php artisan test tests/Feature/ProductSearchTest.php
+ID7「商品詳細情報取得」: php artisan test tests/Feature/ProductShowTest.php
+ID8「いいね機能」：php artisan test tests/Feature/ProductFavoriteTest.php
+ID9「コメント送信機能」：
+ID10「商品購入機能」：
+ID11「支払い方法選択機能」：
+ID12「配送先変更機能」：
+ID13「ユーザー情報取得」：
+ID14「ユーザー情報変更」：
+ID15「出品商品情報登録」：
+ID16「メール認証機能」：
 
 PHPコンテナから出る　Ctrl+D
 
@@ -50,7 +66,7 @@ email:kiwi@example.com
 password:password
 出品数:5
 購入数:0
-お気に入り:全商品(自身が出品した商品に関してはお気に入りの登録がしてあっても、マイリストタブには表示されない仕様に設定してあります、確認用のパロメータとなっています)
+お気に入り:全商品(仕様上、自身が出品した商品に関してはお気に入りの登録がしてあっても、マイリストタブには表示させない為、確認用パロメータとなっています)
 コメント:1(マイク)
 メール認証済み
 
@@ -77,8 +93,9 @@ password:password
 name:melon
 email:melon@example.com
 password:password
+
 ## 補足
-新規登録ユーザーは自信が出品した商品に対して、お気に入り機能・コメント機能は使えない仕様となっています
+新規登録ユーザーは自身が出品した商品に対して、お気に入り機能・コメント機能は使えない仕様となっています
 
 ## 主なルート一覧
 本プロジェクトのルート構成（URL・メソッド・ミドルウェア）は、別途提出するスプレッドシートに記載しています。  
