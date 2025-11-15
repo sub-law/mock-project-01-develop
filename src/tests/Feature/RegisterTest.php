@@ -9,7 +9,6 @@ class RegisterTest extends TestCase
 {
     use RefreshDatabase;
 
-    // 設計メモ①：名前が未入力の場合、バリデーションメッセージが表示される
     public function test_名前が未入力の場合_バリデーションメッセージが表示される()
     {
         $response = $this->post('/register', [
@@ -24,7 +23,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    // 設計メモ②：メールアドレスが未入力の場合、バリデーションメッセージが表示される
     public function test_メールアドレスが未入力の場合_バリデーションメッセージが表示される()
     {
         $response = $this->post('/register', [
@@ -39,7 +37,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    // 設計メモ③：パスワードが未入力の場合、バリデーションメッセージが表示される
     public function test_パスワードが未入力の場合_バリデーションメッセージが表示される()
     {
         $response = $this->post('/register', [
@@ -54,7 +51,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    // 設計メモ④：パスワードが7文字以下の場合、バリデーションメッセージが表示される
     public function test_パスワードが7文字以下の場合_バリデーションメッセージが表示される()
     {
         $response = $this->post('/register', [
@@ -69,7 +65,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    // 設計メモ⑤：パスワード確認と一致しない場合、バリデーションメッセージが表示される
     public function test_パスワード確認と一致しない場合_バリデーションメッセージが表示される()
     {
         $response = $this->post('/register', [
@@ -84,7 +79,6 @@ class RegisterTest extends TestCase
         ]);
     }
 
-    // 設計メモ⑥：全項目が正しく入力された場合、プロフィール設定画面に遷移する
     public function test_全項目が正しく入力された場合_プロフィール設定画面に遷移する()
     {
         $response = $this->post('/register', [

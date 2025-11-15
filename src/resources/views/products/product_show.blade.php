@@ -119,7 +119,6 @@
                 <div class="comment-form-area">
                     <div class="comment-form-title">商品へのコメント</div>
 
-                    @auth
                     <form action="{{ route('comments.store') }}" method="POST">
                         @csrf
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
@@ -129,15 +128,19 @@
                         <div class="form-error">{{ $message }}</div>
                         @enderror
 
+                        @auth
                         <button type="submit" class="comment-submit-button">コメントを送信する</button>
-                    </form>
-                    @endauth
+                        @endauth
 
-                    @guest
-                    <a href="{{ route('login') }}" class="comment-submit-button">ログインしてコメントする</a>
-                    @endguest
+                        @guest
+                        <button type="button" class="comment-submit-button disabled" disabled>
+                            ログインしてコメントする
+                        </button>
+                        @endguest
+                    </form>
                 </div>
                 @endif
+
             </div>
         </div>
     </div>

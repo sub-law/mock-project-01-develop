@@ -59,10 +59,8 @@ class ProductShowTest extends TestCase
         $response->assertSee('良好');
         $response->assertSee('¥15,000');
         
-        // いいね数が1件表示されていることを確認
         $response->assertSee('<span class="action-count">1</span>', false);
         
-        // コメント数が1件表示されていることを確認
         $response->assertSee('コメント（1）');
         $response->assertSee('コメント者');
         $response->assertSee('古着');

@@ -47,7 +47,7 @@ ID5「マイリスト一覧取得」：php artisan test tests/Feature/MyListInde
 ID6「商品検索機能」: php artisan test tests/Feature/ProductSearchTest.php
 ID7「商品詳細情報取得」: php artisan test tests/Feature/ProductShowTest.php
 ID8「いいね機能」：php artisan test tests/Feature/ProductFavoriteTest.php
-ID9「コメント送信機能」：
+ID9「コメント送信機能」： php artisan test tests/Feature/ProductCommentTest.php
 ID10「商品購入機能」：
 ID11「支払い方法選択機能」：
 ID12「配送先変更機能」：
@@ -66,7 +66,7 @@ email:kiwi@example.com
 password:password
 出品数:5
 購入数:0
-お気に入り:全商品(仕様上、自身が出品した商品に関してはお気に入りの登録がしてあっても、マイリストタブには表示させない為、確認用パロメータとなっています)
+お気に入り:全商品
 コメント:1(マイク)
 メール認証済み
 
@@ -89,13 +89,9 @@ password:password
 メール未認証
 住所未登録
 
-新規登録用簡易データ
-name:melon
-email:melon@example.com
-password:password
-
 ## 補足
 新規登録ユーザーは自身が出品した商品に対して、お気に入り機能・コメント機能は使えない仕様となっています
+ユーザー「kiwi」には自身が出品した商品に対してもお気に入りのステータスを付与していますが、マイリストタブには表示されないようになっています
 
 ## 主なルート一覧
 本プロジェクトのルート構成（URL・メソッド・ミドルウェア）は、別途提出するスプレッドシートに記載しています。  
