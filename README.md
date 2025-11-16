@@ -41,17 +41,18 @@ Stripeのテストキーを `.env` に記述してください（`.env.example` 
 ## テストケース確認コマンド
 全テスト：php artisan test
 ID1「会員登録機能」：php artisan test tests/Feature/RegisterTest.php
-ID2＆3「ログイン・ログアウト機能」：php artisan test tests/Feature/LoginTest.php
+ID2「ログイン機能」：php artisan test tests/Feature/LoginTest.php
+ID3「ログアウト機能」: ID2のファイルに記載
 ID4「商品一覧取得」：php artisan test tests/Feature/ProductIndexTest.php
 ID5「マイリスト一覧取得」：php artisan test tests/Feature/MyListIndexTest.php
 ID6「商品検索機能」: php artisan test tests/Feature/ProductSearchTest.php
 ID7「商品詳細情報取得」: php artisan test tests/Feature/ProductShowTest.php
 ID8「いいね機能」：php artisan test tests/Feature/ProductFavoriteTest.php
 ID9「コメント送信機能」： php artisan test tests/Feature/ProductCommentTest.php
-ID10「商品購入機能」：
-ID11「支払い方法選択機能」：
-ID12「配送先変更機能」：
-ID13「ユーザー情報取得」：
+ID10「商品購入機能」： php artisan test tests/Feature/PurchaseTest.php
+ID11「支払い方法選択機能」：ID10のファイルに記載
+ID12「配送先変更機能」： ID10のファイルに記載
+ID13「ユーザー情報取得」： php artisan test tests/Feature/ProfileTest.php
 ID14「ユーザー情報変更」：
 ID15「出品商品情報登録」：
 ID16「メール認証機能」：
