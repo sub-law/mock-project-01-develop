@@ -14,15 +14,6 @@ use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
-use Stripe\Stripe;
-use Stripe\Checkout\Session;
-
-
-/*
-|--------------------------------------------------------------------------
-| Public Routes
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/', [ProductController::class, 'index'])->name('index');
 Route::get('/item/{item_id}', [ProductController::class, 'show'])->name('product_show');
@@ -34,12 +25,6 @@ Route::post('/register', [RegisterController::class, 'register'])->name('registe
 Route::get('/login', [LoginController::class, 'showloginform'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
-
-/*
-|--------------------------------------------------------------------------
-| Email Verification Routes
-|--------------------------------------------------------------------------
-*/
 
 Route::get('/email/verify', fn() => view('auth.verify'))
     ->middleware('auth')
@@ -53,20 +38,10 @@ Route::post('/email/verification-notification', [EmailVerificationNotificationCo
     ->middleware(['auth', 'throttle:6,1'])
     ->name('verification.send');
 
-/*
-|--------------------------------------------------------------------------
-| Authenticated Routes (Login Required)
-|--------------------------------------------------------------------------
-*/
 Route::middleware('auth')->group(function () {
     Route::get('/profile_setup', [ProfileController::class, 'setup'])->name('profile.setup');
 });
 
-/*
-|--------------------------------------------------------------------------
-| Verified Routes (Login + Email Verified Required)
-|--------------------------------------------------------------------------
-*/
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/profile_setup', [ProfileController::class, 'update'])->name('profile.update');
 
