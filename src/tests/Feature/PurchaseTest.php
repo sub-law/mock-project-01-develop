@@ -105,15 +105,13 @@ class PurchaseTest extends TestCase
 
         $this->actingAs($buyer);
 
-        $response = $this->get("/purchase/{$product->id}", [
-            'payment_method' => 'convenience',
-        ]);
+        // コンビニ払いを選択
+        $response = $this->get("/purchase/{$product->id}?payment_method=convenience");
         $response->assertStatus(200);
         $response->assertSeeText('コンビニ払い');
 
-        $response = $this->get("/purchase/{$product->id}", [
-            'payment_method' => 'credit',
-        ]);
+        // カード払いを選択
+        $response = $this->get("/purchase/{$product->id}?payment_method=credit");
         $response->assertStatus(200);
         $response->assertSeeText('カード支払い');
     }

@@ -29,8 +29,14 @@
                 <h2 class="payment-title">支払い方法</h2>
                 <select name="payment_method" class="payment-select">
                     <option value="">選択してください</option>
-                    <option value="convenience" {{ old('payment_method') === 'convenience' ? 'selected' : '' }}>コンビニ払い</option>
-                    <option value="credit" {{ old('payment_method') === 'credit' ? 'selected' : '' }}>カード支払い</option>
+                    <option value="convenience"
+                        {{ old('payment_method', request('payment_method')) === 'convenience' ? 'selected' : '' }}>
+                        コンビニ払い
+                    </option>
+                    <option value="credit"
+                        {{ old('payment_method', request('payment_method')) === 'credit' ? 'selected' : '' }}>
+                        カード支払い
+                    </option>
                 </select>
 
                 @error('payment_method')
@@ -67,7 +73,10 @@
                 <div class="summary-row">
                     <span class="summary-label">支払い方法</span>
                     <span class="summary-value payment-summary">
-                        {{ old('payment_method') === 'convenience' ? 'コンビニ払い' : (old('payment_method') === 'credit' ? 'カード支払い' : '未選択') }}
+                        @php
+                        $method = old('payment_method', request('payment_method'));
+                        @endphp
+                        {{ $method === 'convenience' ? 'コンビニ払い' : ($method === 'credit' ? 'カード支払い' : '未選択') }}
                     </span>
 
                 </div>
